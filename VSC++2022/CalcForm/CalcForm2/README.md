@@ -1,9 +1,6 @@
 # Calculattor-2024:Apr
 
-Строчный калькулятор.
-
-1. апи для разрабов.
-2. пример юзерского калькулятора.
-3. пример с формой для поточной функции.
+Суть задачи можно посмотреть тут:
+https://www.cyberforum.ru/cpp-beginners/thread3148273.html
  
-  ![Screenshot in game 1](screenshorts/a.jpg)
+  ![Screenshot vsVolga](../../../scrshorts/vsvolga.jpg)
