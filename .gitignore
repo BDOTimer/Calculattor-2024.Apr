@@ -44,9 +44,6 @@ ipch\
 *.rar
 *.pdb
 *.db
-*.db-shm
-*.db-wal
-*.opendb
 
 
 
