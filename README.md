@@ -2,10 +2,10 @@
   
 ____
 ## Строчный калькулятор.
-  
-1. апи для разрабов. [:arrow_right:](VSC%2B%2B2022/CalcForm/CalcDemo)
-2. пример юзерского калькулятора. [:arrow_right:](VSC%2B%2B2022/CalcForm/CalcForm2)
-3. пример с формой для поточной функции. [:arrow_right:](VSC%2B%2B2022/CalcForm/vsVolga)
+
+1. апи для разрабов: [:arrow_right:](!code/API_calculator.hpp)
+2. пример-1 юзерского калькулятора: [:arrow_right:](VSC%2B%2B2022/CalcForm/CalcForm2)
+3. пример-2 с формой для поточной функции: [:arrow_right:](VSC%2B%2B2022/CalcForm/vsVolga)
   
 
   ### Пример юзерского калькулятора: [:arrow_lower_right:](VSC%2B%2B2022/CalcForm/CalcForm2)
