@@ -1,0 +1,20 @@
+# ---------------------------:
+ipch
+ipch\
+
+FileContentIndex
+FileContentIndex\
+
+*.metagen
+*.rar
+*.pdb
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+*.json
+
+
+
+
+
