@@ -3,5 +3,5 @@
 	<FileVersion major="1" minor="0" />
 	<ActiveProject path="Calculator_exe_lib/Calculator_2024April.cbp" />
 	<PreferredTarget name="Release" />
-	<EditorTabsLayout layout="d620a6306623d7900000638300000002=2;Calc_test_lib:code\main.cpp,*0;Calculator_2024April:..\..\!code\calc.cpp,1;Calculator_2024April:..\..\!code\API_calculator.hpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=698;besth=248;minw=698;minh=248;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=d620a6306623d7900000638300000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=0;besth=0;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=10|" />
+	<EditorTabsLayout layout="149f57406628a6580000455600000002=2;Calc_test_lib:code\main.cpp,*0;Calculator_2024April:..\..\!code\calc.cpp,1;Calculator_2024April:..\..\!code\API_calculator.hpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=698;besth=248;minw=698;minh=248;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=149f57406628a6580000455600000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=0;besth=0;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=10|" />
 </CodeBlocks_workspace_layout_file>
