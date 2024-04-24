@@ -10,9 +10,7 @@
   ## Пример юзерского калькулятора: [:arrow_right:](VSC%2B%2B2022/CalcForm/CalcForm2)
   ![Screenshot in game 1](scrshorts/CalcForm2.jpg)
   
-  
-  ## Видос для новичков:
-  [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/XpcirerFFo0/0.jpg)](https://www.youtube.com/watch?v=XpcirerFFo0)
+
   
   
 
