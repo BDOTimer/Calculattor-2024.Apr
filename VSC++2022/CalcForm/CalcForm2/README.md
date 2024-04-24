@@ -1,6 +1,6 @@
-# Calculattor-2024:Apr
+# CalcForm2 [ТУТОР]
 
-Суть задачи можно посмотреть тут:
-https://www.cyberforum.ru/cpp-beginners/thread3148273.html
+Тут проект использования на примере простого калькулятора 
+для повседневного пользования.
  
-  ![Screenshot vsVolga](../../../scrshorts/vsvolga.jpg)
+  ![Screenshot vsVolga](../../../scrshorts/CalcForm2.jpg)
