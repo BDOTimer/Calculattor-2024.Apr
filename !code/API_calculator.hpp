@@ -1,4 +1,4 @@
-﻿constexpr const wchar_t* LOGO = LR"(version: 0.1.8)(Дем☺)
+﻿constexpr const wchar_t* LOGO = LR"(version: 0.1.9)(Дем☺)
 ///----------------------------------------------------------------------------|
 /// C++17 Калькулятор-2024:Апрель
 ///     (+) Парсер
@@ -93,11 +93,11 @@ struct  exString : std::wstring
                    Report_token r ) : rt(r)
         {
              std::wstring& a(*this);
-             std::wstring           report(std::wstring&, std::string&, int );
-             a                    = report(            s,         file, line);
-             a                   += L"    " ;
-             a                   += rt.str();
-             a                   += ENDL    ;
+             std::wstring      report(std::wstring&, std::string&, int );
+                           a = report(            s,         file, line);
+                           a += L"    " ;
+                           a += rt.str();
+                           a += ENDL    ;
         }
 
     ///---------------|
@@ -134,17 +134,17 @@ struct  API_calculator
     /// (можно вызывать повторно,       |
     ///  если парсинг строки не удался).|
     ///---------------------------------:
-    void   recreate(std::string_view expression);
+    void recreate(std::string_view expression);
 
     ///---------------------------------|
     /// Парсинг и построение дерева.    |
     ///---------------------------------:
-    void   build();
+    void build();
 
     ///---------------------------------|
     /// Связываем внешнюю переменную.   |
     ///---------------------------------:
-    bool   bindvar (std::string_view varname, double* var);
+    bool bindvar (std::string_view varname, double* var);
 
     ///---------------------------------|
     /// Вычисляем.                      |
@@ -170,8 +170,7 @@ struct  API_calculator
         ///-------------------------------|
         /// Подопытный кролик.            |
         ///-------------------------------:
-        #define EXPR x * x - 1.5 * z
-
+        #define     EXPR  x * x - 1.5 * z
         const char* expr{"x * x - 1.5 * z"};
 
         ///-------------------------------|
@@ -232,9 +231,9 @@ struct  API_calculator
         /// упс...                        |
         ///-------------------------------:
         catch(const EXEPTION_LUSER& e)
-        {   WCOUT   << "expr = " << expr      << ENDL
-                    << "\nERROR_LUSER: " << e << ENDL
-                    << e.report().str()       << ENDL;
+        {   WCOUT   << "expr = "         << expr << ENDL
+                    << "\nERROR_LUSER: " << e    << ENDL
+                    << e.report().str()          << ENDL;
         }
 
         #undef EXPR
