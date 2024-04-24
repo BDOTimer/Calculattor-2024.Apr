@@ -8,7 +8,7 @@
 
 ///-----------------|
 /// Этапы:          |
-///     (+) DEMO    |
+///     (+) TEST    |
 ///     (-) LIB     |
 ///-----------------|
 /// Устанавливается в IDE:
@@ -20,7 +20,7 @@
 #include <sstream>
 #include <string>
 
-constexpr const bool   AUTOTESTS = false;
+constexpr const bool   AUTOTESTS = false; /// TODO: ...
 constexpr const wchar_t* ENDL{ L"\r\n" };
 
 namespace std
@@ -286,7 +286,7 @@ struct Example_02 : protected CalcBase
 {
     ///---------------------------------|
     /// Парс + билд.                    |
-    /// При успехи вернёт пустую строку.|
+    /// При успехе вернёт пустую строку.|
     ///---------------------------------:
     std::wstring build(std::string expr)
     {   return CalcBase::build    (expr);
