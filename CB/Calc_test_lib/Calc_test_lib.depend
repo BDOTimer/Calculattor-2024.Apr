@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1712430993 source:c:\workcb-2023\projects\hello\calc_test_lib\main.cpp
+	"API_calculator.hpp"
+
+1712431763 c:\workcb-2023\projects\hello\calc_test_lib\api_calculator.hpp
+	<iostream>
+	<iomanip>
+	<string>
+
+1712430993 source:c:\workcb-2023\projects\calculattor-2024apr\cb\calc_test_lib\code\main.cpp
+	"API_calculator.hpp"
+
+1712647541 c:\workcb-2023\projects\calculattor-2024apr\!code\api_calculator.hpp
+	<iostream>
+	<iomanip>
+	<sstream>
+	<string>
+

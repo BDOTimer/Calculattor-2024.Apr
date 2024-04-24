@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1712082057 source:c:\workcb-2023\projects\hello\calculator_2024april\main.cpp
+	<iostream>
+	<iomanip>
+	<sstream>
+	<vector>
+	<string>
+	<set>
+	<windows.h>
+
+1712428649 source:c:\workcb-2023\projects\hello\calculator_2024april\code\calc.cpp
+	<iostream>
+	<iomanip>
+	<string>
+	<functional>
+	<algorithm>
+	<sstream>
+	<vector>
+	<cmath>
+	<list>
+	<set>
+	<map>
+	"api_calculator.hpp"
+	<windows.h>
+
+1712855233 source:c:\workcb-2023\projects\calculattor-2024apr\!code\calc.cpp
+	<functional>
+	<algorithm>
+	<sstream>
+	<vector>
+	<cmath>
+	<list>
+	<set>
+	<map>
+	"api_calculator.hpp"
+	<windows.h>
+
+1712856957 c:\workcb-2023\projects\calculattor-2024apr\!code\api_calculator.hpp
+	<iostream>
+	<iomanip>
+	<sstream>
+	<string>
+

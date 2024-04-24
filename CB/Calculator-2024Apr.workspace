@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="Calculator_exe_lib/Calculator_2024April.cbp" />
+		<Project filename="Calc_test_lib/Calc_test_lib.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
