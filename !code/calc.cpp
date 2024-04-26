@@ -227,26 +227,33 @@ private:
         {  ")",  0, G::BR_CLOSE , 0, nullptr },
         {  ",",  0, G::COMMA    , 0, nullptr },
 
-        {  "=", 16, G::OPERATION, 2, F{ return                B ; }},
-        {  "+",  6, G::OPERATION, 2, F{ return      A  +      B ; }},
-        {  "-",  6, G::OPERATION, 2, F{ return      A  -      B ; }},
-        {  "*",  5, G::OPERATION, 2, F{ return      A  *      B ; }},
-        {  "/",  5, G::OPERATION, 2, F{ return      A  /      B ; }},
-        {  "&", 11, G::OPERATION, 2, F{ return int (A) &  int(B); }},
-        {  "|", 13, G::OPERATION, 2, F{ return int (A) |  int(B); }},
-        {"sin",  3, G::FUNCTION , 1, F{ return sin (A)          ; }},
-        {"cos",  3, G::FUNCTION , 1, F{ return cos (A)          ; }},
-        {"pow",  3, G::FUNCTION , 2, F{ return pow (A  ,      B); }},
-        {"fabs", 3, G::FUNCTION , 1, F{ return fabs(A)          ; }},
-        { "u-",  3, G::OPER_UNARY,1, F{ return     -A           ; }},
-        {  "!",  3, G::OPER_UNARY,1, F{ return     !A; }},
+        {  "="      , 16, G::OPERATION, 2, F{ return                B ; }},
+        {  "+"      ,  6, G::OPERATION, 2, F{ return      A  +      B ; }},
+        {  "-"      ,  6, G::OPERATION, 2, F{ return      A  -      B ; }},
+        {  "*"      ,  5, G::OPERATION, 2, F{ return      A  *      B ; }},
+        {  "/"      ,  5, G::OPERATION, 2, F{ return      A  /      B ; }},
+        {  "&"      , 11, G::OPERATION, 2, F{ return int (A) &  int(B); }},
+        {  "|"      , 13, G::OPERATION, 2, F{ return int (A) |  int(B); }},
+        {"sin"      ,  3, G::FUNCTION , 1, F{ return sin (A)          ; }},
+        {"cos"      ,  3, G::FUNCTION , 1, F{ return cos (A)          ; }},
+        {"pow"      ,  3, G::FUNCTION , 2, F{ return pow (A  ,      B); }},
+        {"fabs"     ,  3, G::FUNCTION , 1, F{ return fabs(A)          ; }},
+        { "u-"      ,  3, G::OPER_UNARY,1, F{ return     -A           ; }},
+        {  "!"      ,  3, G::OPER_UNARY,1, F{ return     !A           ; }},
 
-        {  ">",  9, G::OPERATION, 2, F{ return      A  >      B ; }},
-        {  "<",  9, G::OPERATION, 2, F{ return      A  <      B ; }},
-        { "&&", 14, G::OPERATION, 2, F{ return  int(A) && int(B); }},
-        { "||", 15, G::OPERATION, 2, F{ return  int(A) || int(B); }},
-        { ">=",  9, G::OPERATION, 2, F{ return  int(A) >= int(B); }},
-        { "<=",  9, G::OPERATION, 2, F{ return  int(A) <= int(B); }}
+        {  ">"      ,  9, G::OPERATION, 2, F{ return      A  >      B ; }},
+        {  "<"      ,  9, G::OPERATION, 2, F{ return      A  <      B ; }},
+        { "&&"      , 14, G::OPERATION, 2, F{ return  int(A) && int(B); }},
+        { "||"      , 15, G::OPERATION, 2, F{ return  int(A) || int(B); }},
+        { ">="      ,  9, G::OPERATION, 2, F{ return  int(A) >= int(B); }},
+        { "<="      ,  9, G::OPERATION, 2, F{ return  int(A) <= int(B); }},
+
+        {"sqrt"     ,  3, G::FUNCTION , 1, F{ return  std::sqrt  (A)  ; }},
+        {"tan"      ,  3, G::FUNCTION , 1, F{ return  std::tan   (A)  ; }},
+        {"asin"     ,  3, G::FUNCTION , 1, F{ return  std::asin  (A)  ; }},
+        {"acos"     ,  3, G::FUNCTION , 1, F{ return  std::acos  (A)  ; }},
+        {"log"      ,  3, G::FUNCTION , 1, F{ return  std::log   (A)  ; }},
+        {"factorial",  3, G::FUNCTION , 1, F{ return  std::tgamma(A+1); }}
     };
 
     #undef A
@@ -1290,6 +1297,7 @@ private:
         TESTCALC(pow(2+-1,-5));
         TESTCALC((9+-sin(4)));
         TESTCALC(9*-1);
+        TESTCALC(sqrt(fabs(tan(1.23) * (asin(0.333) + log(100)))));
                                                                   BANNER(L"",
         L"///-------------------------------------------------------------|",
         L"/// TODO ...                                                    |",
