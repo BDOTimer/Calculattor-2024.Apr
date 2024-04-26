@@ -108,7 +108,7 @@ struct       Node
 };
 
 
-using  vnod_t = std::vector<Node*>&    ;
+using  vnod_t = std::vector<Node*>&          ;
 using fcalc_t = std::function<double(vnod_t)>;
 using ivnod_t = std::vector<Node*>::iterator ;
 
@@ -213,8 +213,8 @@ struct  Config
     }
 
 private:
-    std::string_view opers{"+-*/&=><|!"};
-    std::string_view delim{" (),\n\r" };
+    std::string_view opers{"+-*/&=><|%!Y"};
+    std::string_view delim{" (),\n\r"   };
 
     #define A a.front()->calculate()
     #define B a[1]->calculate()
@@ -232,6 +232,7 @@ private:
         {  "-"      ,  6, G::OPERATION, 2, F{ return      A  -      B ; }},
         {  "*"      ,  5, G::OPERATION, 2, F{ return      A  *      B ; }},
         {  "/"      ,  5, G::OPERATION, 2, F{ return      A  /      B ; }},
+        {  "%"      ,  5, G::OPERATION, 2, F{ return int (A) %  int(B); }},
         {  "&"      , 11, G::OPERATION, 2, F{ return int (A) &  int(B); }},
         {  "|"      , 13, G::OPERATION, 2, F{ return int (A) |  int(B); }},
         {"sin"      ,  3, G::FUNCTION , 1, F{ return sin (A)          ; }},
@@ -255,7 +256,7 @@ private:
         {"asin"     ,  3, G::FUNCTION , 1, F{ return  std::asin  (A)  ; }},
         {"acos"     ,  3, G::FUNCTION , 1, F{ return  std::acos  (A)  ; }},
         {"log"      ,  3, G::FUNCTION , 1, F{ return  std::log   (A)  ; }},
-        {"log2"     ,  3, G::FUNCTION , 1, F{ return  std::log2  (A)  ; }},
+    /// {"log2"     ,  3, G::FUNCTION , 1, F{ return  std::log2  (A)  ; }},
         {"log10"    ,  3, G::FUNCTION , 1, F{ return  std::log10 (A)  ; }},
         {"factorial",  3, G::FUNCTION , 1, F{ return  std::tgamma(A+1); }},
         {"exp"      ,  3, G::FUNCTION , 1, F{ return  std::exp   (A)  ; }},
@@ -500,6 +501,7 @@ private:
                 Token(     "(", 0),
                 Token(     ")", 0),
                 Token(     "=", 0),
+                Token(     "=", 0),
                 Token(     "x", 0)
             };
 
@@ -599,7 +601,7 @@ private:
                 case '\r':
                 case '\n':
                 case ' ' :                               break;
-                case '-' : uminus(s, i, pos);            break;
+                case '-' : uminus      (s, i, pos     ); break;
                 case '&' : check2symbol(s, i, pos, '&'); break;
                 case '|' : check2symbol(s, i, pos, '|'); break;
                 case '>' : check2symbol(s, i, pos, '='); break;
@@ -1240,20 +1242,19 @@ private:
     Tokens ts;
     Tree   tr;
 
-#define TESTCALC(A) test(#A, A)
     ///------------|
     /// Calculator.|
     ///------------:
     TEST()
     {
         testbase ();
-    /// testerr  ();
+     testerr  ();
     /// testvars1();
     /// testvars2();
         testlogic();
     }
 
-    static void test(std::string_view expr, double real = -1e100)
+    static bool test(std::string_view expr, double real = -1e100)
     {
         const wchar_t* mess[2][2] =
         {
@@ -1268,19 +1269,31 @@ private:
                             calc.build();
             double result = calc.go   ();
 
-            std::wcout << std::setw(42) << expr.data()     << " = "
-                       << std::setw(10) << result          << " : "
-                       << (real == result ? mess[mode][0]
-                                          : mess[mode][1]) << '\n';
+            bool ok = real == result;
+
+            if (!AUTOTESTS)
+            {
+                std::wcout  << std::setw(42) << expr.data() << " = "
+                            << std::setw(10) << result << " : "
+                            << (ok ? mess[mode][0]
+                                   : mess[mode][1]) << '\n';
+            }
+
+            return ok;
         }
         catch(const EXEPTION_LUSER& e)
         {   std::wcout << ">   " << expr.data() <<   '\n';
-            std::wcout << "ERROR_LUSER: " << e  << "\n\n";
+            //std::wcout << "ERROR_LUSER: " << e  << "\n\n";
         }
+        return false;
     }
 
-    static void testbase()
-    {                                                             BANNER(L"",
+    #define TESTCALC(A) ok = ok && test(#A, A)
+
+    static bool testbase()
+    {
+        bool ok = true;
+                                                                  BANNER(L"",
         L"///-------------------------------------------------------------|",
         L"/// ГОТОВО(Успешная калькуляция).                               |",
         L"///-------------------------------------------------------------:");
@@ -1292,6 +1305,7 @@ private:
         TESTCALC(-1+11 -20);
         TESTCALC(3*40 / 3 + 20-100);
         TESTCALC(1-2+3-4.123+5.123);
+        TESTCALC(4 + 5 * 3 + 1 + 2);
         TESTCALC(4 + 5 * 3 + 1 + sin(100));
         TESTCALC(4+5 *3 + 4* 6 - 100/25);
         TESTCALC(100 - sin(100) + pow(2,4) +19);
@@ -1302,17 +1316,25 @@ private:
         TESTCALC(1&&1 + (2&&2));
         TESTCALC((2&2) + 2);
         TESTCALC(-5+(-3+6)-3.14e3+42.5e-1);
-        TESTCALC(- ((sin (-18.7e-2+3.3*3))+(pow(2+1.1,3) *((10+6) /2))*(2&15)));
         TESTCALC(pow(2+-1,-5));
         TESTCALC((9+-sin(4)));
         TESTCALC(9*-1);
+        TESTCALC(-((sin(-18.7e-2 + 3.3 * 3)) + (pow(2 + 1.1, 3) + ((10 + 6) / 2)) * (2 & 15)));
         TESTCALC(sqrt(fabs(tan(1.23) * (asin(0.333) + log(100)))));
+        TESTCALC(30%12);
+
+        std::wcout  << ENDL
+                    << L"Все базовые тесты: "
+                    << (ok ? L"ОТЛИНО!/" : L"ПЛОХО.../a") << ENDL;
                                                                   BANNER(L"",
         L"///-------------------------------------------------------------|",
         L"/// TODO ...                                                    |",
         L"///-------------------------------------------------------------:",
         L"... надо поискать)");
+
+        return ok;
     }
+    #undef TESTCALC
 
     static void testerr()
     {                                                             BANNER(L"",
@@ -1369,8 +1391,6 @@ private:
         test("2+4< 3 || !(2.2>-4.3 && 6 < 4)", 1);
 
     }
-
-#undef TESTCALC
 };
 
 
@@ -1454,22 +1474,17 @@ void API_calculator::regvar(std::string_view varname)
 {   vars_global_EXT.regvar(varname);
 }
 
-
 void API_calculator::recreate(std::string_view expression)
-{   if(nullptr != calc)   delete calc;
-    calc = new Calculator(expression);
+{   free(); calc = new Calculator(expression);
 }
-
 
 void API_calculator::build()
 {   calc->build();
 }
 
-
 bool API_calculator::bindvar (std::string_view varname, double* var)
 {   return calc->bindvar(varname, var);
 }
-
 
 double API_calculator::go() const
 {   return calc->go();
@@ -1482,6 +1497,8 @@ std::pair<std::string, double> API_calculator::go_ext() const
 std::wstring  API_calculator::get_vars_info()
 {   return vars_global_INTRO.get_vars_info();
 }
+
+void API_calculator::free() { if (nullptr != calc) delete calc; }
 
 
 ///----------------------------------------------------------------------------|
