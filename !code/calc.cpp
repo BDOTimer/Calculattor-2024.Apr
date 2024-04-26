@@ -108,7 +108,7 @@ struct       Node
 };
 
 
-using  vnod_t = const std::vector<Node*>&    ;
+using  vnod_t = std::vector<Node*>&    ;
 using fcalc_t = std::function<double(vnod_t)>;
 using ivnod_t = std::vector<Node*>::iterator ;
 
@@ -249,11 +249,20 @@ private:
         { "<="      ,  9, G::OPERATION, 2, F{ return  int(A) <= int(B); }},
 
         {"sqrt"     ,  3, G::FUNCTION , 1, F{ return  std::sqrt  (A)  ; }},
+        {"cbrt"     ,  3, G::FUNCTION , 1, F{ return  std::cbrt  (A)  ; }},
         {"tan"      ,  3, G::FUNCTION , 1, F{ return  std::tan   (A)  ; }},
+        {"atan"     ,  3, G::FUNCTION , 1, F{ return  std::atan  (A)  ; }},
         {"asin"     ,  3, G::FUNCTION , 1, F{ return  std::asin  (A)  ; }},
         {"acos"     ,  3, G::FUNCTION , 1, F{ return  std::acos  (A)  ; }},
         {"log"      ,  3, G::FUNCTION , 1, F{ return  std::log   (A)  ; }},
-        {"factorial",  3, G::FUNCTION , 1, F{ return  std::tgamma(A+1); }}
+        {"log2"     ,  3, G::FUNCTION , 1, F{ return  std::log2  (A)  ; }},
+        {"log10"    ,  3, G::FUNCTION , 1, F{ return  std::log10 (A)  ; }},
+        {"factorial",  3, G::FUNCTION , 1, F{ return  std::tgamma(A+1); }},
+        {"exp"      ,  3, G::FUNCTION , 1, F{ return  std::exp   (A)  ; }},
+        {"round"    ,  3, G::FUNCTION , 1, F{ return  std::round (A)  ; }},
+        {"trunc"    ,  3, G::FUNCTION , 1, F{ return  std::trunc (A)  ; }},
+        {"ceil"     ,  3, G::FUNCTION , 1, F{ return  std::ceil  (A)  ; }},
+        {"floor"    ,  3, G::FUNCTION , 1, F{ return  std::floor (A)  ; }}
     };
 
     #undef A
