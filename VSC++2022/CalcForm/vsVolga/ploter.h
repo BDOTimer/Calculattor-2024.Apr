@@ -58,10 +58,10 @@ namespace _ploter {
 		{	    cfg->reconfig(pb, _sz);
 		}
 		
-		PictureBox^  pb;
-		Config^     cfg;
-		Pen^        pen;
-		Pen^     redPen;
+		PictureBox^ pb;
+		Config^    cfg;
+		Pen^       pen;
+		Pen^    redPen;
 
 		const int T = 2;
 
