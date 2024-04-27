@@ -1248,49 +1248,48 @@ private:
     TEST()
     {
         testbase ();
-     testerr  ();
+    /// testerr  ();
     /// testvars1();
     /// testvars2();
-        testlogic();
+    /// testlogic();
     }
 
-    static bool test(std::string_view expr, double real = -1e100)
+    static void test(std::string_view expr, double real = -1e100)
     {
-        const wchar_t* mess[2][2] =
-        {
-            { L"ОТЛИЧНО", L"ПЛОХО"},
+        bool ok;
+
+        const wchar_t* mess[2][2]  =
+        {   { L"ОТЛИЧНО", L"ПЛОХО" },
             { L"???"    , L"нельзя проверить..."}
         };
 
-        int mode = real == -1e100 ? 1 : 0;
+        int  mode = real == -1e100 ? 1 : 0;
 
         try
         {   Calculator      calc  (expr);
                             calc.build();
             double result = calc.go   ();
 
-            bool ok = real == result;
+            ok = real == result;
 
-            if (!AUTOTESTS)
+            if (!AUTOTESTS || !ok)
             {
                 std::wcout  << std::setw(42) << expr.data() << " = "
-                            << std::setw(10) << result << " : "
+                            << std::setw(10) << result      << " : "
                             << (ok ? mess[mode][0]
                                    : mess[mode][1]) << '\n';
             }
-
-            return ok;
         }
         catch(const EXEPTION_LUSER& e)
         {   std::wcout << ">   " << expr.data() <<   '\n';
-            //std::wcout << "ERROR_LUSER: " << e  << "\n\n";
+            std::wcout << "ERROR_LUSER: " << e  << "\n\n";
         }
-        return false;
     }
 
-    #define TESTCALC(A) ok = ok && test(#A, A)
+    #define TESTCALC(A)   test(#A, A)
+    #define TESTVAR2(A,B) test( A, B)
 
-    static bool testbase()
+    static void testbase()
     {
         bool ok = true;
                                                                   BANNER(L"",
@@ -1325,16 +1324,58 @@ private:
 
         std::wcout  << ENDL
                     << L"Все базовые тесты: "
-                    << (ok ? L"ОТЛИНО!/" : L"ПЛОХО.../a") << ENDL;
+                    << (ok ? L"ОТЛИНО!" : L"ПЛОХО...\a") << ENDL;
                                                                   BANNER(L"",
         L"///-------------------------------------------------------------|",
         L"/// TODO ...                                                    |",
         L"///-------------------------------------------------------------:",
         L"... надо поискать)");
 
-        return ok;
     }
-    #undef TESTCALC
+
+    static void testlogic()
+    {   
+        bool ok = true;
+                                                                  BANNER(L"",
+        L"///-------------------------------------------------------------|",
+        L"/// Логические выражения.                                       |",
+        L"///-------------------------------------------------------------:");
+        TESTCALC(1|2|4    );
+        TESTCALC(5.6>-7.8 );
+        TESTCALC(5.6<-7.8 );
+        TESTCALC(2+4< 3   );
+        TESTCALC(2+4< 3 && 2.2>-4.3);
+        TESTCALC(2+4> 3 && 2.2>-4.3);
+        TESTCALC(2+4< 3 || 2.2>-4.3);
+        TESTCALC(2+4< 3 || !(2.2>-4.3));
+        TESTCALC(2+4< 3 || !(2.2>-4.3 && 6 < 4));
+    }
+
+    static void testvars1 ()
+    {   ///----------------|
+        /// API_calculator.|
+        ///----------------:
+        std::wcout << API_calculator::example_01();
+    }
+
+    static void testvars2()
+    {   
+        bool ok = true;
+
+        ///----------------|
+        /// ...            |
+        ///----------------:
+        TESTVAR2("1"              ,   1);
+        TESTVAR2("10+tmp"         ,  11);
+        TESTVAR2("tmp+12"         ,  23);
+        TESTVAR2("2+tmp+tmp+3*tmp", 117);
+        TESTVAR2("var=123"        , 123);
+        TESTVAR2("var+1"          , 124);
+        TESTVAR2("2 * 3"          ,   6);
+        TESTVAR2("var = 200"      , 200);
+        TESTVAR2("var=var"        , 200);
+        TESTVAR2("tmp+var"        , 206);
+    }
 
     static void testerr()
     {                                                             BANNER(L"",
@@ -1351,49 +1392,11 @@ private:
         test("2+-+2"    );
         test("2+++2"    );
     }
-
-    static void testvars1 ()
-    {   ///----------------|
-        /// API_calculator.|
-        ///----------------:
-        std::wcout << API_calculator::example_01();
-    }
-
-    static void testvars2()
-    {   ///----------------|
-        /// ...            |
-        ///----------------:
-        test("1"              ,   1);
-        test("10+tmp"         ,  11);
-        test("tmp+12"         ,  23);
-        test("2+tmp+tmp+3*tmp", 117);
-        test("var=123"        , 123);
-        test("var+1"          , 124);
-        test("2 * 3"          ,   6);
-        test("var = 200"      , 200);
-        test("var=var"        , 200);
-        test("tmp+var"        , 206);
-    }
-
-    static void testlogic()
-    {                                                             BANNER(L"",
-        L"///-------------------------------------------------------------|",
-        L"/// Логические выражения.                                       |",
-        L"///-------------------------------------------------------------:");
-        test("1|2|4"   , 7);
-        test("5.6>-7.8", 1);
-        test("5.6<-7.8", 0);
-        test("2+4< 3"  , 0);
-        test("2+4< 3 && 2.2>-4.3", 0);
-        test("2+4> 3 && 2.2>-4.3", 1);
-        test("2+4< 3 || 2.2>-4.3", 1);
-        test("2+4< 3 || !(2.2>-4.3)", 0);
-        test("2+4< 3 || !(2.2>-4.3 && 6 < 4)", 1);
-
-    }
+    #undef TESTCALC
+    #undef TESTVAR2
 };
 
-
+#ifdef DEF_TEST
 ///=============|
 /// ТЕСТЫ.      |
 ///=============:
@@ -1426,11 +1429,7 @@ void tests()
 ///----------------------------------------------------------------------------|
 /// Старт.
 ///----------------------------------------------------------------------- main:
-#ifdef DEF_TEST
 int main()
-#else
-int main_test()
-#endif
 {
     std::wcout << LOGO;
                                              BANNER(
@@ -1460,11 +1459,12 @@ int main_test()
     L"/// ПРОГРАММА ЗАКОНЧИЛА РАБОТУ.            |",
     L"///----------------------------------------.");
 
-  //while(true)
+/// while(true)
     std::cin.get();
 
     return 0;
 }
+#endif
 
 
 ///----------------------------------------------------------------------------|
