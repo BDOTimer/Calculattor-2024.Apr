@@ -5,7 +5,6 @@
 ///----------------------------------------------------------------------------:
 #include <functional>
 #include <algorithm>
-#include <sstream>
 #include <vector>
 #include <cmath>
 #include <list>
@@ -21,8 +20,7 @@
 ///-----------------------------|
 /// Для удобства.               |
 ///-----------------------------:
-#define wl(v)         std::wcout << "    " << #v << " = " << (v) << "\n";
-#define  l(v)         std:: cout << "    " << #v << " = " << (v) << "\n";
+#define  l(v)         std::wcout << frmt::_2wstr(#v, " = ", (v), '\n');
 #define  TEST         friend void tests(); static void test
 #define  TESTCLASS(a) bann01(L"// TESTCLASS::", #a); a::test();
 
@@ -30,6 +28,7 @@
 #define THROW_LUSER(T,M) throw EXEPTION_LUSER\
                          (M, __FILE__, __LINE__, Report_token(T, (T).position))
 //#define THROW_USER(M)  throw EXEPTION_USER( M, __FILE__, __LINE__)
+
 
 std::wstring Report(std::wstring& s, std::string& file, int line)
 {
@@ -170,14 +169,14 @@ struct Grammar
         constexpr size_t N = sizeof(description) / sizeof(*description) - 1;
 
         if(N != SIZE)
-        {   THROW_FATAL(L"Несоответсвие кол-ва description...");
+        {   THROW_FATAL(L"Несоответсвие кол-ва description ...");
         }
 
         return description[t];
     }
 
     ///-----------------------------|
-    /// Описатель.                  |
+    /// Описатель граматики.        |
     ///-----------------------------:
     std::string_view name      {"?"};
     int              precedence{ -1};
@@ -195,7 +194,7 @@ struct  Config
             for(auto& g : grammar) faster[g.name] = &g;
         }
 
-    std::string symbol()                const
+    std::string symbol() const
     {   return std::string(opers) +=   delim;
     }
 
@@ -203,7 +202,7 @@ struct  Config
     {   return opers.find(oper) != std::string::npos;
     }
 
-    Grammar* get_Grammar(std::string_view s)
+    const Grammar* get_Grammar(std::string_view s)
     {   if(const auto& p = faster.find(s); p != faster.end()) return p->second;
         return nullptr;
     }
@@ -217,7 +216,7 @@ private:
     #define F [](vnod_t a)
     #define G Grammar
 
-    std::vector<Grammar> grammar
+    const std::vector<Grammar> grammar
     {
         {  "(",  0, G::BR_OPEN  , 0, nullptr },
         {  ")",  0, G::BR_CLOSE , 0, nullptr },
@@ -267,13 +266,13 @@ private:
     #undef G
     #undef F
 
-    std::map<std::string_view, Grammar*> faster;
+    std::map<std::string_view, const Grammar*> faster;
 }config;
 
 
 ///----------------------------------------------------------------------------|
-/// FabricVars.
-///----------------------------------------------------------------- FabricVars:
+/// CargoVarsBase.
+///-------------------------------------------------------------- CargoVarsBase:
 struct  CargoVarsBase :     std::map             <std::string, double>
 {       CargoVarsBase(const std::initializer_list<std::string_view>& v)
         {
@@ -298,6 +297,9 @@ private:
     friend struct FabricVars;
 };
 
+///-----------------------------|
+/// CargoVarsINTRO.             |
+///-----------------------------:
 struct  CargoVarsINTRO   : CargoVarsBase
 {       CargoVarsINTRO() : CargoVarsBase({ "tmp" })
         {
@@ -358,6 +360,9 @@ private:
     bool upd = false;
 }vars_global_INTRO;
 
+///-----------------------------|
+/// CargoVarsEXT.               |
+///-----------------------------:
 struct  CargoVarsEXT     : CargoVarsBase
 {       CargoVarsEXT()   : CargoVarsBase({ "x", "y", "z", "t" }) {}
 
@@ -454,7 +459,7 @@ private:
     /// пока так ...
     Grammar::eTYPE detected_type(std::string_view s)
     {
-        if(grammar = config.get_Grammar(s); nullptr != grammar)
+        if(grammar = (Grammar*)config.get_Grammar(s); nullptr != grammar)
         {   return grammar->TYPE;
         }
 
@@ -557,7 +562,7 @@ struct  Tokens : std::vector<Token>
     /// Дебаг.        |
     ///---------------:
     void debug() const
-    {   wl(expr.data())
+    {   l(expr.data())
         std::wcout << std::endl;
         for(const auto& t : *this) t.debug();
         std::wcout << std::endl;
@@ -728,7 +733,13 @@ private:
         };
 
         if (ERR == m[previous.TYPE][last.TYPE])
-        {   THROW_LUSER(last, L"[PARSER]:check_rule ...");
+        {   
+            switch(last.TYPE)
+            {
+            case Grammar::EDGE: 
+                     THROW_LUSER(previous, L"[PARSER]:check_rule ..."); break;
+            default: THROW_LUSER(last    , L"[PARSER]:check_rule ..."); break;
+            }
         }
     }
 
@@ -912,7 +923,7 @@ private:
 
         n2.args = {&n1, &n3};
 
-        wl(n2.calculate())
+        l(n2.calculate())
     }
 };
 
@@ -1208,15 +1219,15 @@ private:
     {
         {   Tokens t("3*4 - 20 "); t.parse   ();
             Tree   tree       (t); tree.build();
-            wl(tree.calculate(  ))
-            wl(tree.calculate(  ))
-            wl(tree.calculate(  ))
+            l(tree.calculate(  ))
+            l(tree.calculate(  ))
+            l(tree.calculate(  ))
         }
 
         {   const char* ex{"(1*(4))"};
             Tokens t   (ex)      ; t.parse   ();
             Tree   tree       (t); tree.build();
-            wl(tree.calculate(  ))
+            l(tree.calculate(  ))
         }
     }
 };

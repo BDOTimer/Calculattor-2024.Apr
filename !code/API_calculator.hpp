@@ -1,11 +1,9 @@
 ﻿#ifndef API_CALCULATOR_H
 #define API_CALCULATOR_H
 
-constexpr const wchar_t* LOGO = LR"(version: 0.1.9)(Дем☺)
+constexpr const wchar_t* LOGO = LR"(version: 0.1.9)
 ///----------------------------------------------------------------------------|
-/// C++17 Калькулятор-2024:Апрель
-///     (+) Парсер
-///     (+) Дерево
+/// C++17 Калькулятор-2024:Апрель (Дем☺)
 ///----------------------------------------------------------------------------:
 )";
 
@@ -28,6 +26,7 @@ constexpr const wchar_t* LOGO = LR"(version: 0.1.9)(Дем☺)
 /// То что замыливает АПИ вынес сюда.       |
 ///-----------------------------------------:
 #include "myl.hpp"
+
 
 constexpr const bool AUTOTESTS = false; /// TODO: ...
 
@@ -138,7 +137,7 @@ struct  API_calculator
     static std::wstring get_vars_info();
 
     ///---------------------------------|
-    /// Очисить списки переменных.      |
+    /// Очистить списки переменных.     |
     ///---------------------------------:
     void reset();
 
@@ -242,6 +241,10 @@ private:
 template<typename T> struct Vec2 { T x, y; };
 struct CalcBase
 {
+    std::tuple<int, int> report() const 
+    {   return{int(rprt.position), int(rprt.name.size())};
+    }
+
 protected:
     std::wstring build(std::string expr)
     {
@@ -259,8 +262,6 @@ protected:
         return WCOUT.str();
     }
 
-    std::tuple<int, int> report() const { return { int(rprt.position),
-                                                   int(rprt.name.size())}; }
     API_calculator calc;
     Report_token   rprt;
 };
@@ -269,7 +270,7 @@ protected:
 ///----------------------------------------------------------------------------|
 /// Example_02
 ///----------------------------------------------------------------------------:
-struct Example_02 : protected CalcBase
+struct Example_02 : CalcBase
 {
     ///---------------------------------|
     /// Парс + билд.                    |
@@ -283,8 +284,8 @@ struct Example_02 : protected CalcBase
     /// Связываем внешние переменные.   |
     ///---------------------------------:
     bool bindvar()
-    {   bool b  = calc.bindvar("x", &x)
-               && calc.bindvar("y", &y);
+    {   bool   b  = calc.bindvar("x", &x)
+               &&   calc.bindvar("y", &y);
         return b;
     }
 
@@ -296,8 +297,6 @@ struct Example_02 : protected CalcBase
         y = Y;
         return calc.go(); 
     }
-
-    std::tuple<int, int> report() const { return CalcBase::report(); }
 
 private:
     double x, y;
