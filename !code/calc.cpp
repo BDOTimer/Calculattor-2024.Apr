@@ -1318,7 +1318,8 @@ private:
         TESTCALC(pow(2+-1,-5));
         TESTCALC((9+-sin(4)));
         TESTCALC(9*-1);
-        TESTCALC(-((sin(-18.7e-2 + 3.3 * 3)) + (pow(2 + 1.1, 3) + ((10 + 6) / 2)) * (2 & 15)));
+        TESTCALC(-((sin(-18.7e-2 + 3.3 * 3)) + (pow(2 + 1.1, 3) + \
+                                       ((10 + 6) / 2)) * (2 & 15)));
         TESTCALC(sqrt(fabs(tan(1.23) * (asin(0.333) + log(100)))));
         TESTCALC(30%12);
 
@@ -1406,6 +1407,7 @@ private:
 void tests()
 {
   //testclass_exString();
+    frmt::test();
 
     ///----------------|
     /// Парсер.        |

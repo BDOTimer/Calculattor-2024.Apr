@@ -1,4 +1,7 @@
-﻿constexpr const wchar_t* LOGO = LR"(version: 0.1.9)(Дем☺)
+﻿#ifndef API_CALCULATOR_H
+#define API_CALCULATOR_H
+
+constexpr const wchar_t* LOGO = LR"(version: 0.1.9)(Дем☺)
 ///----------------------------------------------------------------------------|
 /// C++17 Калькулятор-2024:Апрель
 ///     (+) Парсер
@@ -20,33 +23,13 @@
 #include <sstream>
 #include <string>
 
-constexpr const bool   AUTOTESTS = false; /// TODO: ...
-constexpr const wchar_t* ENDL{ L"\r\n" };
-
-namespace std
-{
-    inline std::string to_string(const std::wstring& s)
-    {   std::string r;
-        for (const auto c : s) r.push_back((char)c);
-        return      r;
-    }
-
-    inline std::wstring to_wstring(const std::string& s)
-    {   return {s.begin(), s.end()};
-    }
-
-    inline std::wstring to_wstring(const std::string_view& s)
-    {   return {s.begin(), s.end()};
-    }
-}
 
 ///-----------------------------------------|
-/// Комменты в наружу.                      |
+/// То что замыливает АПИ вынес сюда.       |
 ///-----------------------------------------:
-template <typename... TT>
-inline void BANNER(TT&&... vals)
-{   ((std::wcout << vals << std::endl), ...);
-}
+#include "myl.hpp"
+
+constexpr const bool AUTOTESTS = false; /// TODO: ...
 
 
 ///-----------------------------------------|
@@ -62,8 +45,7 @@ struct  Report_token
     size_t   position;
 
     std::wstring str() const
-    {   return std::wstring(L"ТОКЕН:\"")   + name
-                          + L"\",ПОЗИЦИЯ:" + std::to_wstring(position);
+    {   return frmt::_2wstr(L"xТОКЕН:\"", name, L"\",ПОЗИЦИЯ:", position);
     }
 };
 
@@ -257,12 +239,12 @@ private:
 template<typename T> struct Vec2 { T x, y; };
 struct CalcBase
 {
+protected:
     std::wstring build(std::string expr)
     {
         std::wstringstream WCOUT;
         try
-        {
-            calc.recreate(expr);
+        {   calc.recreate(expr);
             calc.build   (    );
         }
         catch (const EXEPTION_LUSER& e)
@@ -276,8 +258,6 @@ struct CalcBase
 
     std::tuple<int, int> report() const { return { int(rprt.position),
                                                    int(rprt.name.size())}; }
-
-protected:
     API_calculator calc;
     Report_token   rprt;
 };
@@ -319,3 +299,5 @@ struct Example_02 : protected CalcBase
 private:
     double x, y;
 };
+
+#endif // !API_CALCULATOR_H
