@@ -336,7 +336,7 @@ struct  CargoVarsINTRO   : CargoVarsBase
     {   if(!upd) return  L"";
         std::wstringstream o;
         for(const auto&    e: cash)
-        {   o << std::setw(8) << e.first << " : " << e.second << ENDL;
+        {   o << std::setw(4) << e.first << " : " << e.second << ENDL;
         }
         upd = false;
         return o.str();

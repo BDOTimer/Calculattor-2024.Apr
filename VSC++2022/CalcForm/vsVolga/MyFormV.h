@@ -43,7 +43,7 @@ namespace $safeprojectname$ {
 
 			ploter = gcnew Ploter(pictureBox1, trackBar1->Value);
 
-			color(0, richTextBox1->Text->Length, Color::Black);
+			color(0, richTextBox1_Edit->Text->Length, Color::Black);
 		}
 
 	protected:
@@ -57,7 +57,7 @@ namespace $safeprojectname$ {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox1_Edit;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::TrackBar^ trackBar1;
@@ -76,7 +76,7 @@ namespace $safeprojectname$ {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->richTextBox1_Edit = (gcnew System::Windows::Forms::RichTextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
@@ -84,18 +84,18 @@ namespace $safeprojectname$ {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// richTextBox1
+			// richTextBox1_Edit
 			// 
-			this->richTextBox1->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"JetBrains Mono Medium", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->richTextBox1_Edit->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->richTextBox1_Edit->Font = (gcnew System::Drawing::Font(L"JetBrains Mono Medium", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->richTextBox1->Location = System::Drawing::Point(0, 599);
-			this->richTextBox1->Multiline = false;
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Horizontal;
-			this->richTextBox1->Size = System::Drawing::Size(584, 27);
-			this->richTextBox1->TabIndex = 0;
-			this->richTextBox1->Text = L"";
+			this->richTextBox1_Edit->Location = System::Drawing::Point(0, 599);
+			this->richTextBox1_Edit->Multiline = false;
+			this->richTextBox1_Edit->Name = L"richTextBox1";
+			this->richTextBox1_Edit->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Horizontal;
+			this->richTextBox1_Edit->Size = System::Drawing::Size(584, 27);
+			this->richTextBox1_Edit->TabIndex = 0;
+			this->richTextBox1_Edit->Text = L"";
 			// 
 			// pictureBox1
 			// 
@@ -145,7 +145,7 @@ namespace $safeprojectname$ {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(584, 626);
 			this->Controls->Add(this->trackBar1);
-			this->Controls->Add(this->richTextBox1);
+			this->Controls->Add(this->richTextBox1_Edit);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox1);
 			this->DoubleBuffered = true;
@@ -199,18 +199,18 @@ namespace $safeprojectname$ {
 		///--------------------------------------------------------------------:
 		private: bool run_calc()
 		{
-			color(0, richTextBox1->Text->Length, Color::Black);
+			color(0, richTextBox1_Edit->Text->Length, Color::Black);
 
-			auto input = richTextBox1->Text;
+			auto input = richTextBox1_Edit->Text;
 
 			if(std::wstring s = 
 				calc_exm02.build(marshal_as<std::string>(input)); s.empty())
 			{
 				if (calc_exm02.bindvar())
 				{
-					richTextBox1->ForeColor = System::Drawing::Color::Green;
+					richTextBox1_Edit->ForeColor = System::Drawing::Color::Green;
 
-					color(0, richTextBox1->Text->Length, Color::Green);
+					color(0, richTextBox1_Edit->Text->Length, Color::Green);
 					return true;
 				}
 			}
@@ -223,13 +223,13 @@ namespace $safeprojectname$ {
 		}
 
 		Void color(INT a, INT b,  Color C)
-		{	richTextBox1->SelectionStart  = a;
-			richTextBox1->SelectionLength = b;
-			richTextBox1->SelectionColor  = C;
+		{	richTextBox1_Edit->SelectionStart  = a;
+			richTextBox1_Edit->SelectionLength = b;
+			richTextBox1_Edit->SelectionColor  = C;
 
-			richTextBox1->SelectionStart  = richTextBox1->Text->Length;
-			richTextBox1->SelectionLength = 0;
-			richTextBox1->SelectionColor  = Color::Black;
+			richTextBox1_Edit->SelectionStart  = richTextBox1_Edit->Text->Length;
+			richTextBox1_Edit->SelectionLength = 0;
+			richTextBox1_Edit->SelectionColor  = Color::Black;
 		}
 		
 		private: Void MyForm_Resize(Object^ sender, EventArgs^ e) 

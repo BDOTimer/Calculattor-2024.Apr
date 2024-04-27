@@ -42,7 +42,7 @@ namespace $safeprojectname$ {
 			//
 			//TODO: Add the constructor code here
 			//
-			this->richTextBox1->Text =
+			this->richTextBox1_Edit->Text =
 				marshal_as<String^>(API_calculator::example_01());
 
 			info_Vars();
@@ -59,11 +59,11 @@ namespace $safeprojectname$ {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox1_Edit;
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 
-	private: System::Windows::Forms::RichTextBox^ richTextBox2_Out;
+	private: System::Windows::Forms::RichTextBox^ richTextBox2_Log;
 	private: System::Windows::Forms::RichTextBox^ richTextBox3_Res;
 	private: System::Windows::Forms::TextBox^ textBox1_Vars;
 	private: System::Windows::Forms::Panel^ panel1;
@@ -88,9 +88,9 @@ namespace $safeprojectname$ {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->richTextBox1_Edit = (gcnew System::Windows::Forms::RichTextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->richTextBox2_Out = (gcnew System::Windows::Forms::RichTextBox());
+			this->richTextBox2_Log = (gcnew System::Windows::Forms::RichTextBox());
 			this->richTextBox3_Res = (gcnew System::Windows::Forms::RichTextBox());
 			this->textBox1_Vars = (gcnew System::Windows::Forms::TextBox());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -98,20 +98,20 @@ namespace $safeprojectname$ {
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// richTextBox1
+			// richTextBox1_Edit
 			// 
-			this->richTextBox1->Anchor = System::Windows::Forms::AnchorStyles::Left;
-			this->richTextBox1->Font = (gcnew System::Drawing::Font(L"PT Mono", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->richTextBox1_Edit->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->richTextBox1_Edit->Font = (gcnew System::Drawing::Font(L"PT Mono", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->richTextBox1->Location = System::Drawing::Point(1, 52);
-			this->richTextBox1->MaxLength = 200000;
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->richTextBox1->Size = System::Drawing::Size(708, 446);
-			this->richTextBox1->TabIndex = 0;
-			this->richTextBox1->Text = L"";
-			this->richTextBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::richTextBox1_MouseClick_1);
-			this->richTextBox1->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::richTextBox1_KeyDown);
+			this->richTextBox1_Edit->Location = System::Drawing::Point(1, 52);
+			this->richTextBox1_Edit->MaxLength = 200000;
+			this->richTextBox1_Edit->Name = L"richTextBox1";
+			this->richTextBox1_Edit->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->richTextBox1_Edit->Size = System::Drawing::Size(708, 446);
+			this->richTextBox1_Edit->TabIndex = 0;
+			this->richTextBox1_Edit->Text = L"";
+			this->richTextBox1_Edit->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::richTextBox1_MouseClick_1);
+			this->richTextBox1_Edit->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::richTextBox1_KeyDown);
 			// 
 			// label1
 			// 
@@ -125,17 +125,17 @@ namespace $safeprojectname$ {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"ÐÅÇÓËÜÒÀÒ:";
 			// 
-			// richTextBox2_Out
+			// richTextBox2_Log
 			// 
-			this->richTextBox2_Out->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->richTextBox2_Out->BackColor = System::Drawing::SystemColors::InactiveCaptionText;
-			this->richTextBox2_Out->ForeColor = System::Drawing::Color::LimeGreen;
-			this->richTextBox2_Out->Location = System::Drawing::Point(1, 504);
-			this->richTextBox2_Out->Name = L"richTextBox2_Out";
-			this->richTextBox2_Out->ReadOnly = true;
-			this->richTextBox2_Out->Size = System::Drawing::Size(708, 107);
-			this->richTextBox2_Out->TabIndex = 3;
-			this->richTextBox2_Out->Text = L"";
+			this->richTextBox2_Log->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->richTextBox2_Log->BackColor = System::Drawing::SystemColors::InactiveCaptionText;
+			this->richTextBox2_Log->ForeColor = System::Drawing::Color::LimeGreen;
+			this->richTextBox2_Log->Location = System::Drawing::Point(1, 504);
+			this->richTextBox2_Log->Name = L"richTextBox2_Out";
+			this->richTextBox2_Log->ReadOnly = true;
+			this->richTextBox2_Log->Size = System::Drawing::Size(708, 107);
+			this->richTextBox2_Log->TabIndex = 3;
+			this->richTextBox2_Log->Text = L"";
 			// 
 			// richTextBox3_Res
 			// 
@@ -202,8 +202,8 @@ namespace $safeprojectname$ {
 			this->ClientSize = System::Drawing::Size(884, 611);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->textBox1_Vars);
-			this->Controls->Add(this->richTextBox2_Out);
-			this->Controls->Add(this->richTextBox1);
+			this->Controls->Add(this->richTextBox2_Log);
+			this->Controls->Add(this->richTextBox1_Edit);
 			this->MaximumSize = System::Drawing::Size(1200, 900);
 			this->MinimumSize = System::Drawing::Size(400, 300);
 			this->Name = L"MyForm";
@@ -220,8 +220,8 @@ namespace $safeprojectname$ {
 	private: Void richTextBox1_MouseClick_1(Object^ sender, MouseEventArgs^ e)
 	{
 		if (cnt01 == 0)
-		{	cnt01++; this->richTextBox1->Text = L"";
-			this->richTextBox1->Font = (gcnew System::Drawing::Font(
+		{	cnt01++; this->richTextBox1_Edit->Text = L"";
+			this->richTextBox1_Edit->Font = (gcnew System::Drawing::Font(
 				L"PT Mono", 15.75F, 
 				System::Drawing::FontStyle::Bold, 
 				System::Drawing::GraphicsUnit::Point,
@@ -233,9 +233,9 @@ namespace $safeprojectname$ {
 	{
 		if (e->KeyCode == Keys::Enter)
 		{	
-			auto last = get_last_string(richTextBox1);
-			richTextBox2_Out->Text += "\r\n";
-			richTextBox2_Out->Text += last;
+			auto last = get_last_string(richTextBox1_Edit);
+			richTextBox2_Log->Text += "\r\n";
+			richTextBox2_Log->Text += last;
 
 			run_calc();
 		}
@@ -245,7 +245,7 @@ namespace $safeprojectname$ {
 
 	private: Void run_calc()
 	{
-		auto input = get_last_string(richTextBox1);
+		auto input = get_last_string(richTextBox1_Edit);
 
 		calc.recreate(marshal_as<std::string>(input));
 
@@ -258,28 +258,28 @@ namespace $safeprojectname$ {
 			label1->Text += marshal_as<String^>(res.first);
 			label1->Text += L" = ";
 
-			richTextBox3_Res->Text   = result.ToString();
-			richTextBox2_Out->Text   = L"Óñïåøíî.";
+			richTextBox3_Res->Text      = result.ToString();
+			richTextBox2_Log->Text      = L"Óñïåøíî.";
 
 			richTextBox3_Res->ForeColor = System::Drawing::Color::SeaGreen;
-			richTextBox2_Out->ForeColor = System::Drawing::Color::LimeGreen;
+			richTextBox2_Log->ForeColor = System::Drawing::Color::LimeGreen;
 
-			color(0, richTextBox1->Text->Length, Color::Black);
+			color(0, richTextBox1_Edit->Text->Length, Color::Black);
 		}
 		else
 		{
 			richTextBox3_Res->Text = L"... èñïðàâüòå ñòðîêó ...";
-			richTextBox2_Out->Text      = marshal_as<String^>(s);
+			richTextBox2_Log->Text =  marshal_as<String^>(s);
 			
 			richTextBox3_Res->ForeColor = System::Drawing::Color::Red;
-			richTextBox2_Out->ForeColor = System::Drawing::Color::Red;
+			richTextBox2_Log->ForeColor = System::Drawing::Color::Red;
 
 			/// TODO ...
 			color(pos_last_str + (INT)report.position, 
 				                 (INT)report.name.size(), Color::Red);
 		}
 
-		pos_last_str = richTextBox1->Text->Length + 1;
+		pos_last_str = richTextBox1_Edit->Text->Length + 1;
 
 		info_Vars();
 	}
@@ -292,13 +292,13 @@ namespace $safeprojectname$ {
 		{	a += arr[0]->Length;
 		}
 
-		richTextBox1->SelectionStart     = a;
-		richTextBox1->SelectionLength    = arr[arr->Length - 1]->Length;
-		richTextBox1->SelectionBackColor = Color::LightCyan;
+		richTextBox1_Edit->SelectionStart     = a;
+		richTextBox1_Edit->SelectionLength    = arr[arr->Length - 1]->Length;
+		richTextBox1_Edit->SelectionBackColor = Color::LightCyan;
 
-		richTextBox1->SelectionStart     = richTextBox1->Text->Length-1;
-		richTextBox1->SelectionLength    = 1;
-		richTextBox1->SelectionBackColor = Color::White;
+		richTextBox1_Edit->SelectionStart     = richTextBox1_Edit->Text->Length-1;
+		richTextBox1_Edit->SelectionLength    = 1;
+		richTextBox1_Edit->SelectionBackColor = Color::White;
 */
 		return arr [ arr->Length - 1 ];
 	}
@@ -310,19 +310,25 @@ namespace $safeprojectname$ {
 
 	Void color(INT a, INT b, Color C)
 	{
-		richTextBox1->SelectionStart  = a;
-		richTextBox1->SelectionLength = b;
-		richTextBox1->SelectionColor  = C;
+		richTextBox1_Edit->SelectionStart  = a;
+		richTextBox1_Edit->SelectionLength = b;
+		richTextBox1_Edit->SelectionColor  = C;
 
-		richTextBox1->SelectionStart  = richTextBox1->Text->Length;
-		richTextBox1->SelectionLength = 0;
-		richTextBox1->SelectionColor  = Color::Black;
+		richTextBox1_Edit->SelectionStart  = richTextBox1_Edit->Text->Length;
+		richTextBox1_Edit->SelectionLength = 0;
+		richTextBox1_Edit->SelectionColor  = Color::Black;
 	}
 
 	private: Void button1_Click_Reset(Object^ sender, EventArgs^ e)
 	{	calc.reset();
 		info_Vars ();
-		richTextBox1->Text = "";
+
+		richTextBox1_Edit    ->Text = "";
+		label1          ->Text = L"ÐÅÇÓËÜÒÀÒ: ...";
+		richTextBox3_Res->Text = "...";
+		richTextBox2_Log->Text = "...";
+
+		richTextBox1_Edit->Focus();
 	}
 };
 }
