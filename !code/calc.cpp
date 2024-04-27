@@ -24,7 +24,6 @@
 #define wl(v)         std::wcout << "    " << #v << " = " << (v) << "\n";
 #define  l(v)         std:: cout << "    " << #v << " = " << (v) << "\n";
 #define  TEST         friend void tests(); static void test
-#define xTESTCLASS(a) std::wcout << "\nTESTCLASS::" << #a << ":\n"; a::test();
 #define  TESTCLASS(a) bann01(L"// TESTCLASS::", #a); a::test();
 
 #define THROW_FATAL(  M) throw EXEPTION_FATAL(M, __FILE__, __LINE__)
@@ -32,18 +31,15 @@
                          (M, __FILE__, __LINE__, Report_token(T, (T).position))
 //#define THROW_USER(M)  throw EXEPTION_USER( M, __FILE__, __LINE__)
 
-std::wstring report(std::wstring& s, std::string& file, int line)
+std::wstring Report(std::wstring& s, std::string& file, int line)
 {
-    std::wstring cut(file.begin( ), file.end());
-    auto e = cut.rfind(L'\\'     ) - 1 ;
-         e = cut.rfind(L'\\',   e) + 1 ;
-       cut = cut.substr(e, cut.size() - e);
+   size_t        e = file.rfind (L'\\'        ) - 1 ;
+                 e = file.rfind (L'\\',      e) + 1 ;
+   const auto& cut = file.substr(e, file.size() - e);
 
-    std::wstringstream  str;
-                        str << s                                     << '\n'
-                            << "    FILE: " << cut                   << '\n'
-                            << "    LINE: " << std::to_wstring(line) << '\n';
-    return str.str();
+    return frmt::_2wstr( s, ENDL ,
+        "    FILE: ",  cut, ENDL ,
+        "    LINE: ", line, ENDL);
 }
 
 
@@ -213,7 +209,7 @@ struct  Config
     }
 
 private:
-    std::string_view opers{"+-*/&=><|%!Y"};
+    std::string_view opers{"+-*/&=><|%!"};
     std::string_view delim{" (),\n\r"   };
 
     #define A a.front()->calculate()
@@ -277,7 +273,7 @@ private:
 
 ///----------------------------------------------------------------------------|
 /// FabricVars.
-///--------------------------------------------------------------- FabricVars:
+///----------------------------------------------------------------- FabricVars:
 struct  CargoVarsBase :     std::map             <std::string, double>
 {       CargoVarsBase(const std::initializer_list<std::string_view>& v)
         {
@@ -354,6 +350,10 @@ struct  CargoVarsINTRO   : CargoVarsBase
         THROW_FATAL(L"[CargoVarsINTRO]: этой ошибки быть не должно ...");
     }
 
+    void reset()
+    {   upd = true; cash.clear(); clear();
+    }
+
 private:
     bool upd = false;
 }vars_global_INTRO;
@@ -365,6 +365,17 @@ struct  CargoVarsEXT     : CargoVarsBase
     {   (*this)[std::string(name)] = -1;
     }
 
+    void regvar(const std::initializer_list<std::string_view>& names)
+    {   for(const auto& e : names)(*this)[std::string(e)] = -1;
+    }
+
+    void reset ()
+    {    clear ();
+         regvar(Default);
+    }
+
+private:
+    const std::initializer_list<std::string_view> Default;
 }vars_global_EXT;
 
 
@@ -390,23 +401,16 @@ struct  Token : std::string_view
 
         Token ( std::string_view s)
               : std::string_view(s),
-                position        (0)
-        {
-            TYPE = detected_type(s);
-        }
+                position        (0){ TYPE = detected_type(s); }
 
         Token (Grammar::eTYPE type)
               : std::string_view("xxx"),
                 position        (0    ),
-                TYPE            (type )
-        {
-        }
+                TYPE            (type ) {}
 
         Token ()
               : std::string_view("ttest"),
-                position        (1234567)
-        {
-        }
+                position        (1234567) {}
 
     ///-----------------|
     /// Где находится?  |
@@ -454,8 +458,8 @@ private:
         {   return grammar->TYPE;
         }
 
-        if(vars_global_EXT  .is_var (s)){ return Grammar::VAR_EXT  ; }
         if(vars_global_INTRO.is_var (s)){ return Grammar::VAR_INTRO; }
+        if(vars_global_EXT  .is_var (s)){ return Grammar::VAR_EXT  ; }
 
         try
         {   size_t n; std::ignore = std::stod(std::string(s), &n);
@@ -1248,10 +1252,10 @@ private:
     TEST()
     {
         testbase ();
-    /// testerr  ();
+        testlogic();
     /// testvars1();
     /// testvars2();
-    /// testlogic();
+    /// testerr  ();
     }
 
     static void test(std::string_view expr, double real = -1e100)
@@ -1360,12 +1364,10 @@ private:
     }
 
     static void testvars2()
-    {   
-        bool ok = true;
-
-        ///----------------|
-        /// ...            |
-        ///----------------:
+    {                                                             BANNER(L"",
+        L"///-------------------------------------------------------------|",
+        L"/// ПЕРЕМЕННЫЕ.                                                 |",
+        L"///-------------------------------------------------------------:");
         TESTVAR2("1"              ,   1);
         TESTVAR2("10+tmp"         ,  11);
         TESTVAR2("tmp+12"         ,  23);
@@ -1498,6 +1500,11 @@ std::pair<std::string, double> API_calculator::go_ext() const
 
 std::wstring  API_calculator::get_vars_info()
 {   return vars_global_INTRO.get_vars_info();
+}
+
+void API_calculator ::reset()
+{   vars_global_INTRO.reset();
+    vars_global_EXT  .reset();
 }
 
 void API_calculator::free() { if (nullptr != calc) delete calc; }

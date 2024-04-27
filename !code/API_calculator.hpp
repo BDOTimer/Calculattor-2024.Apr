@@ -45,7 +45,7 @@ struct  Report_token
     size_t   position;
 
     std::wstring str() const
-    {   return frmt::_2wstr(L"xТОКЕН:\"", name, L"\",ПОЗИЦИЯ:", position);
+    {   return frmt::_2wstr(L"ТОКЕН:\"", name, L"\",ПОЗИЦИЯ:", position);
     }
 };
 
@@ -59,24 +59,22 @@ class _EXEPTION_CLASS_FATAL{};
 class _EXEPTION_CLASS_LUSER{};
 class _EXEPTION_CLASS_USER {}; /// Не используется.
 
+std::wstring Report(std::wstring&, std::string&, int);
+
 template<class T>
 struct  exString : std::wstring
 {       exString ( std::wstring s   ,
                    std::string  file,
-                   int          line)
+                   int          line) : std::wstring(Report(s, file, line))
         {
-             std::wstring& a(*this);
-             std::wstring           report(std::wstring&, std::string&, int );
-             a                    = report(           s ,        file , line);
         }
         exString ( std::wstring s   ,
                    std::string  file,
                    int          line,
-                   Report_token r ) : rt(r)
+                   Report_token r ) :   std::wstring(Report(s, file, line)), 
+                                        rt(r)
         {
              std::wstring& a(*this);
-             std::wstring      report(std::wstring&, std::string&, int );
-                           a = report(            s,         file, line);
                            a += L"    " ;
                            a += rt.str();
                            a += ENDL    ;
@@ -138,6 +136,11 @@ struct  API_calculator
     /// Список переменных.              |
     ///---------------------------------:
     static std::wstring get_vars_info();
+
+    ///---------------------------------|
+    /// Очисить списки переменных.      |
+    ///---------------------------------:
+    void reset();
 
     ///---------------------------------|
     /// Пример использования-01.        |

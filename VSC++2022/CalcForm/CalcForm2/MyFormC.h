@@ -67,6 +67,7 @@ namespace $safeprojectname$ {
 	private: System::Windows::Forms::RichTextBox^ richTextBox3_Res;
 	private: System::Windows::Forms::TextBox^ textBox1_Vars;
 	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -93,6 +94,7 @@ namespace $safeprojectname$ {
 			this->richTextBox3_Res = (gcnew System::Windows::Forms::RichTextBox());
 			this->textBox1_Vars = (gcnew System::Windows::Forms::TextBox());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -117,7 +119,7 @@ namespace $safeprojectname$ {
 			this->label1->Font = (gcnew System::Drawing::Font(L"PT Mono", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::SystemColors::ActiveCaption;
-			this->label1->Location = System::Drawing::Point(55, 19);
+			this->label1->Location = System::Drawing::Point(75, 19);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(140, 24);
 			this->label1->TabIndex = 1;
@@ -169,12 +171,27 @@ namespace $safeprojectname$ {
 			// panel1
 			// 
 			this->panel1->AutoSize = true;
+			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->richTextBox3_Res);
 			this->panel1->Location = System::Drawing::Point(1, 0);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(708, 46);
 			this->panel1->TabIndex = 6;
+			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::Snow;
+			this->button1->Font = (gcnew System::Drawing::Font(L"PT Mono", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button1->ForeColor = System::Drawing::Color::DarkRed;
+			this->button1->Location = System::Drawing::Point(3, 5);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(62, 38);
+			this->button1->TabIndex = 5;
+			this->button1->Text = L"яапня";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_Reset);
 			// 
 			// MyForm
 			// 
@@ -198,10 +215,6 @@ namespace $safeprojectname$ {
 
 		}
 #pragma endregion
-
-	private: Void button1_Click(Object^ sender, EventArgs^ e) 
-	{	run_calc();
-	}
 
 	int cnt01 = 0;
 	private: Void richTextBox1_MouseClick_1(Object^ sender, MouseEventArgs^ e)
@@ -292,9 +305,7 @@ namespace $safeprojectname$ {
 
 	Void info_Vars()
 	{	std::wstring vars_info = API_calculator::get_vars_info();
-		if (!vars_info.empty())
-		{	textBox1_Vars->Text = marshal_as<String^>(vars_info);
-		}
+		textBox1_Vars->Text    = marshal_as<String^>(vars_info);
 	}
 
 	Void color(INT a, INT b, Color C)
@@ -306,6 +317,12 @@ namespace $safeprojectname$ {
 		richTextBox1->SelectionStart  = richTextBox1->Text->Length;
 		richTextBox1->SelectionLength = 0;
 		richTextBox1->SelectionColor  = Color::Black;
+	}
+
+	private: Void button1_Click_Reset(Object^ sender, EventArgs^ e)
+	{	calc.reset();
+		info_Vars ();
+		richTextBox1->Text = "";
 	}
 };
 }
