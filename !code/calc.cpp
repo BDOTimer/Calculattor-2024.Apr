@@ -24,10 +24,10 @@
 #define  TEST         friend void tests(); static void test
 #define  TESTCLASS(a) bann01(L"// TESTCLASS::", #a); a::test();
 
+
 #define THROW_FATAL(  M) throw EXEPTION_FATAL(M, __FILE__, __LINE__)
-#define THROW_LUSER(T,M) throw EXEPTION_LUSER\
-                         (M, __FILE__, __LINE__, Report_token(T, (T).position))
-//#define THROW_USER(M)  throw EXEPTION_USER( M, __FILE__, __LINE__)
+#define THROW_LUSER(T,M) throw EXEPTION_LUSER \
+                   (  M, __FILE__, __LINE__, Report_token(T, (T).position))
 
 
 std::wstring Report(std::wstring& s, std::string& file, int line)
@@ -1463,7 +1463,6 @@ int main()
     /// Фатальные(?) ошибки.                     |
     ///------------------------------------------:
     catch(const EXEPTION_FATAL& e){ std::wcout << "\nERROR_FATAL: " << e; }
-    catch(const EXEPTION_USER & e){ std::wcout << "\nERROR_USER?: " << e; }
     catch(const EXEPTION_LUSER& e){ std::wcout << "\nERROR_LUSER: " << e; }
     catch(const std::exception& e){ std::wcout << "\nERROR_std: " << e.what(); }
     catch(...)                    { std::wcout << "\nERROR: ???"        ; }

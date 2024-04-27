@@ -4,6 +4,8 @@
 
 #include "API_calculator.hpp"
 
+struct Vec2 { float x, y; };
+
 //#include <msclr\marshal_cppstd.h>
 
 namespace _ploter {
@@ -87,7 +89,7 @@ namespace _ploter {
 		{	
 			for (int i = 0; i < amount; ++i)
 			{	
-				Vec2<float> p = getPlot();
+				Vec2 p = getPlot();
 
 				float x = (cfg->w2 + p.x * cfg->sz_cell);
 				float y = (cfg->h2 + p.y * cfg->sz_cell);
@@ -96,7 +98,7 @@ namespace _ploter {
 			}
 		}
 
-		public: void draw_plot(Graphics^ g, Vec2<float> p)
+		public: void draw_plot(Graphics^ g, Vec2 p)
 		{	
 			float x =  cfg->w2 + p.x * cfg->sz_cell;
 			float y = (cfg->h2 - p.y * cfg->sz_cell);
@@ -104,7 +106,7 @@ namespace _ploter {
 			g->DrawLine(redPen, x, y, x + T, y + T);
 		}
 
-		public: Vec2<float> getPlot()
+		public: Vec2 getPlot()
 		{
 			float x = float(rand() % cfg->w) - cfg->w2;
 			float y = float(rand() % cfg->h) - cfg->h2;

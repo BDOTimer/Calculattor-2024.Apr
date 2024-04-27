@@ -56,7 +56,6 @@ struct  Report_token
 ///----------------------------------------------------------------------------:
 class _EXEPTION_CLASS_FATAL{};
 class _EXEPTION_CLASS_LUSER{};
-class _EXEPTION_CLASS_USER {}; /// Не используется.
 
 std::wstring Report(std::wstring&, std::string&, int);
 
@@ -92,7 +91,7 @@ private:
 
 #define EXEPTION_FATAL exString<_EXEPTION_CLASS_FATAL>
 #define EXEPTION_LUSER exString<_EXEPTION_CLASS_LUSER>
-#define EXEPTION_USER  exString<_EXEPTION_CLASS_USER >
+
 
 ///----------------------------------------------------------------------------|
 /// Методы перечислены в том порядке в
@@ -145,8 +144,7 @@ struct  API_calculator
     /// Пример использования-01.        |
     ///---------------------------------:
     static std::wstring example_01()
-    {
-        BANNER(L"",
+    {                                                             BANNER(L"",
         L"///-------------------------------------------------------------|",
         L"/// Пример-01: Использование переменных.                        |",
         L"///-------------------------------------------------------------:");
@@ -238,7 +236,6 @@ private:
 ///----------------------------------------------------------------------------|
 /// Класс с базовыми методами.
 ///----------------------------------------------------------------------------:
-template<typename T> struct Vec2 { T x, y; };
 struct CalcBase
 {
     std::tuple<int, int> report() const 
