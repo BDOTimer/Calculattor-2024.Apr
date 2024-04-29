@@ -166,11 +166,9 @@ struct Grammar
             L"КОЛИЧЕСТВО_eTYPE"
         };
 
-        constexpr size_t N = sizeof(description) / sizeof(*description) - 1;
+        constexpr size_t N = sizeof description / sizeof*description - 1;
 
-        if(N != SIZE)
-        {   THROW_FATAL(L"Несоответсвие кол-ва description ...");
-        }
+        static_assert(N == SIZE, "N != SIZE");
 
         return description[t];
     }
@@ -178,10 +176,10 @@ struct Grammar
     ///-----------------------------|
     /// Описатель граматики.        |
     ///-----------------------------:
-    std::string_view name      {"?"};
-    int              precedence{ -1};
+    std::string_view name           ;
+    int              precedence     ;
     eTYPE            TYPE {UNDEFINE};
-    size_t           args_size   {0};
+    size_t           args_size      ;
     fcalc_t          foo            ;
 };
 
@@ -198,7 +196,7 @@ struct  Config
     {   return std::string(opers) +=   delim;
     }
 
-    bool is_oper(char             oper) const
+    bool is_oper(char oper) const
     {   return opers.find(oper) != std::string::npos;
     }
 
@@ -363,8 +361,8 @@ private:
 ///-----------------------------|
 /// CargoVarsEXT.               |
 ///-----------------------------:
-struct  CargoVarsEXT     : CargoVarsBase
-{       CargoVarsEXT()   : CargoVarsBase({ "x", "y", "z", "t" }) {}
+struct  CargoVarsEXT   : CargoVarsBase
+{       CargoVarsEXT() : CargoVarsBase({ "x", "y", "z", "t" }) {}
 
     void regvar(std::string_view name)
     {   (*this)[std::string(name)] = -1;
@@ -376,11 +374,11 @@ struct  CargoVarsEXT     : CargoVarsBase
 
     void reset ()
     {    clear ();
-         regvar(Default);
+         regvar({ "x", "y", "z", "t" });
     }
 
 private:
-    const std::initializer_list<std::string_view> Default;
+
 }vars_global_EXT;
 
 

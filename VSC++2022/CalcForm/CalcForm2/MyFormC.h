@@ -305,7 +305,10 @@ namespace $safeprojectname$ {
 
 	Void info_Vars()
 	{	std::wstring vars_info = API_calculator::get_vars_info();
-		textBox1_Vars->Text    = marshal_as<String^>(vars_info);
+
+		if(!vars_info.empty())
+		{	textBox1_Vars->Text    = marshal_as<String^>(vars_info);
+		}
 	}
 
 	Void color(INT a, INT b, Color C)

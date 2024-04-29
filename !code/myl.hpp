@@ -18,14 +18,6 @@ namespace std
     {   return { s.cbegin(), s.cend() };
     }
 
-    inline std::string to_string(const char c)
-    {   std::string r; r.push_back(c); return r;
-    }
-
-    inline std::string to_string(const wchar_t c)
-    {   std::string r; r.push_back(char(c)); return r;
-    }
-
     inline std::wstring to_wstring(const std::string_view& s)
     {   return { s.cbegin(), s.cend() };
     }
@@ -34,13 +26,10 @@ namespace std
     {   return { s.cbegin(), s.cend() };
     }
 
-    inline std::wstring to_wstring(const char c)
-    {   std::wstring r; r.push_back(c); return r;
-    }
-
-    inline std::wstring to_wstring(const wchar_t c)
-    {   std::wstring r; r.push_back(c); return r;
-    }
+    inline std::string  to_string (char    c) { return std::string(1,      c) ;}
+    inline std::string  to_string (wchar_t c) { return std::string(1, char(c));}
+    inline std::wstring to_wstring(const char    c){ return std::wstring(1,c) ;}
+    inline std::wstring to_wstring(const wchar_t c){ return std::wstring(1,c) ;}
 }
 
 ///-----------------------------------------|
@@ -53,17 +42,17 @@ inline void BANNER(TT&&... vals)
 
 struct frmt
 {
-    ///-----------------------------------------|
-    /// to_string                               |
-    ///-----------------------------------------:
+    ///-------------------------------------|
+    /// to_string                           |
+    ///-------------------------------------:
     template <typename... TT>
     static std::string _2str(TT&&... vals)
     {   std::string s; ((s += std::to_string(vals)), ...); return s;
     }
 
-    ///-----------------------------------------|
-    /// to_wstring                              |
-    ///-----------------------------------------:
+    ///-------------------------------------|
+    /// to_wstring                          |
+    ///-------------------------------------:
     template <typename... TT>
     static std::wstring _2wstr(TT&&... vals)
     {   std::wstring s; ((s += std::to_wstring(vals)), ...); return s;
