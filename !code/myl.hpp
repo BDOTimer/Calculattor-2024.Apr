@@ -68,3 +68,11 @@ struct frmt
         std::wcout << _2wstr(s,y,year,E);
     }
 };
+
+struct foo
+{
+    static double log2(double x)
+    {   return std::log10(x) / std::log10(2);
+    }
+
+};

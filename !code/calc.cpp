@@ -249,7 +249,7 @@ private:
         {"asin"     ,  3, G::FUNCTION , 1, F{ return  std::asin  (A)  ; }},
         {"acos"     ,  3, G::FUNCTION , 1, F{ return  std::acos  (A)  ; }},
         {"log"      ,  3, G::FUNCTION , 1, F{ return  std::log   (A)  ; }},
-    /// {"log2"     ,  3, G::FUNCTION , 1, F{ return  std::log2  (A)  ; }},
+        {"log2"     ,  3, G::FUNCTION , 1, F{ return  foo::log2  (A)  ; }}, // !
         {"log10"    ,  3, G::FUNCTION , 1, F{ return  std::log10 (A)  ; }},
         {"factorial",  3, G::FUNCTION , 1, F{ return  std::tgamma(A+1); }},
         {"exp"      ,  3, G::FUNCTION , 1, F{ return  std::exp   (A)  ; }},
@@ -1344,7 +1344,8 @@ private:
         L"/// TODO ...                                                    |",
         L"///-------------------------------------------------------------:",
         L"... надо поискать)");
-
+        
+        test("log2(1000000)", double(std::log2(1'000'000)));
     }
 
     static void testlogic()

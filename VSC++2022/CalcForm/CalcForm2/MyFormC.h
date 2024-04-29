@@ -68,13 +68,6 @@ namespace $safeprojectname$ {
 	private: System::Windows::Forms::TextBox^ textBox1_Vars;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ button1;
-
-
-
-
-
-
-
 	private:
 		/// <summary>
 		/// Required designer variable.

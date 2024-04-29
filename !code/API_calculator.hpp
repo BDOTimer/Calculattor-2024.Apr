@@ -152,8 +152,11 @@ struct  API_calculator
         ///-------------------------------|
         /// Подопытный кролик.            |
         ///-------------------------------:
-        #define     EXPR  x * x - 1.5 * z
-        const char* expr{"x * x - 1.5 * z"};
+        #define EXPR  x * x - 1.5 * z
+
+        #define           EXPD(a) #a 
+        #define           EXPS(A) EXPD(A)
+        const char* expr{ EXPS(EXPR) };
 
         ///-------------------------------|
         /// Объект лога.                  |
@@ -219,6 +222,8 @@ struct  API_calculator
         }
 
         #undef EXPR
+        #undef EXPD 
+        #undef EXPS
 
         return WCOUT.str();
     }
