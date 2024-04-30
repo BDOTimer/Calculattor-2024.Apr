@@ -2,7 +2,7 @@
 
 Тут пример `C++/clr WinForm`-проекта простого калькулятора для повседневного пользования.
  
-  ![Screenshot vsVolga](../../../scrshorts/CalcForm2.jpg)
+  ![Screenshot vsVolga](../../../scrshorts/CalcForm2-2.jpg)
   
 ## Видос для новичков:
  
