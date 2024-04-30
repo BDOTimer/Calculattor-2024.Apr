@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by CalcForm2.rc
+// Used by vsVolga.rc
 //
 #define IDI_ICON1                       101
 

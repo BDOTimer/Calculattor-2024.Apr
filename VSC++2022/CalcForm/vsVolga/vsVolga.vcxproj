@@ -194,11 +194,18 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ploter.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyFormV.resx">
       <DependentUpon>MyFormV.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vsVolga.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="transparent.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

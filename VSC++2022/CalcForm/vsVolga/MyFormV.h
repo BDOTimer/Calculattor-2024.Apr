@@ -41,6 +41,8 @@ namespace $safeprojectname$ {
 			//TODO: Add the constructor code here
 			//
 
+			this->Icon = gcnew System::Drawing::Icon(L"mainiconproject.ico");
+
 			ploter = gcnew Ploter(pictureBox1, trackBar1->Value);
 
 			color(0, richTextBox1_Edit->Text->Length, Color::Black);
@@ -91,7 +93,7 @@ namespace $safeprojectname$ {
 				static_cast<System::Byte>(204)));
 			this->richTextBox1_Edit->Location = System::Drawing::Point(0, 599);
 			this->richTextBox1_Edit->Multiline = false;
-			this->richTextBox1_Edit->Name = L"richTextBox1";
+			this->richTextBox1_Edit->Name = L"richTextBox1_Edit";
 			this->richTextBox1_Edit->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Horizontal;
 			this->richTextBox1_Edit->Size = System::Drawing::Size(584, 27);
 			this->richTextBox1_Edit->TabIndex = 0;
