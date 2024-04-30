@@ -256,7 +256,6 @@ namespace $safeprojectname$ {
 			this->MinimumSize = System::Drawing::Size(400, 300);
 			this->Name = L"MyForm";
 			this->ShowIcon = false;
-			this->ShowInTaskbar = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L" ‡Î¸ÍÛÎˇÚÓ-2024";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -319,6 +318,9 @@ namespace $safeprojectname$ {
 
 			richTextBox3_Res->ForeColor = System::Drawing::Color::SeaGreen;
 			richTextBox2_Log->ForeColor = System::Drawing::Color::LimeGreen;
+
+			//std::string ss = marshal_as<std::string>(richTextBox1_Edit->Text);
+			//richTextBox1_Edit->Text = marshal_as<String^>(ss);
 
 			color(0, richTextBox1_Edit->Text->Length, Color::Black);
 		}
@@ -384,7 +386,7 @@ namespace $safeprojectname$ {
 
 	private: Void button1_Click_Reset(Object^ sender, EventArgs^ e)
 	{	calc.reset();
-		info_Vars ();
+        textBox1_Vars->Text = "...";
 
 		richTextBox1_Edit    ->Text = "";
 		label1          ->Text = L"–≈«”À‹“¿“: ...";
