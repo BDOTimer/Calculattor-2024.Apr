@@ -45,6 +45,8 @@ namespace $safeprojectname$ {
 
 		/// this->Icon = gcnew System::Drawing::Icon(L"mainiconproject.ico");
 
+			good();
+
 			this->richTextBox1_Edit->Text =
 				marshal_as<String^>(API_calculator::example_01());
 
