@@ -19,6 +19,8 @@ std::wstring build(API_calculator& c)
 	return WCOUT.str();
 }
 
+#include "code/mover.h"
+
 namespace $safeprojectname$ {
 
 	using namespace System;
@@ -44,6 +46,8 @@ namespace $safeprojectname$ {
 			//
 
 		/// this->Icon = gcnew System::Drawing::Icon(L"mainiconproject.ico");
+
+			mover = gcnew myl::Mover(this, label1);
 
 			good();
 
@@ -295,6 +299,8 @@ namespace $safeprojectname$ {
 
 		}
 #pragma endregion
+
+	myl::Mover^ mover;
 
 	int cnt01 = 0;
 	private: Void richTextBox1_MouseClick_1(Object^ sender, MouseEventArgs^ e)

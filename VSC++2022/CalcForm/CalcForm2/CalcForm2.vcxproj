@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\!code\API_calculator.hpp" />
+    <ClInclude Include="code\Mover.h" />
     <ClInclude Include="MyFormC.h">
       <FileType>CppForm</FileType>
     </ClInclude>
