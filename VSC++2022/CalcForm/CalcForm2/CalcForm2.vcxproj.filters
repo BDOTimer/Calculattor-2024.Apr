@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\..\!code\calc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyFormHelp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyFormC.h">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="code\form_geom.h">
       <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFormHelp.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

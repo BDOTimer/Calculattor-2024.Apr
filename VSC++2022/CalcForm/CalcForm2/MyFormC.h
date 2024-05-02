@@ -1,7 +1,6 @@
 #pragma once
 
-#include "API_calculator.hpp"
-#include <msclr\marshal_cppstd.h>
+#include "MyFormHelp.h"
 
 API_calculator calc;
 Report_token report;
@@ -19,8 +18,10 @@ std::wstring build(API_calculator& c)
 	return WCOUT.str();
 }
 
+
 #include "code/mover.h"
 #include "code/form_geom.h"
+
 
 namespace $safeprojectname$ {
 
@@ -31,7 +32,7 @@ namespace $safeprojectname$ {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	using namespace msclr::interop;
+	//using namespace msclr::interop;
 
 	/// <summary>
 	/// Summary for MyForm
@@ -46,9 +47,10 @@ namespace $safeprojectname$ {
 			//TODO: Add the constructor code here
 			//
 
-		/// this->Icon = gcnew System::Drawing::Icon(L"mainiconproject.ico");
+		/// this->Icon  = gcnew System::Drawing::Icon(L"mainiconproject.ico");
+			this->mover = gcnew myl::Mover(this, label1);
 
-			mover = gcnew myl::Mover(this, label1);
+			//auto bmp = Properties::Resources->myimage;
 
 			good();
 
@@ -285,6 +287,7 @@ namespace $safeprojectname$ {
 			this->button2_help->TabIndex = 9;
 			this->button2_help->Text = L"\?";
 			this->button2_help->UseVisualStyleBackColor = false;
+			this->button2_help->Click += gcnew System::EventHandler(this, &MyForm::button2_help_Click);
 			// 
 			// button1_topmost
 			// 
@@ -333,7 +336,8 @@ namespace $safeprojectname$ {
 		}
 #pragma endregion
 
-	myl::Mover^ mover;
+	myl::Mover^                 mover;
+	CalcForm2::MyFormHelp^ myFormHelp = nullptr;
 
 	int cnt01 = 0;
 	private: Void richTextBox1_MouseClick_1(Object^ sender, MouseEventArgs^ e)
@@ -482,6 +486,18 @@ namespace $safeprojectname$ {
 	{	this->TopMost = !this->TopMost;
 		button1_topmost->ForeColor = this->TopMost ? Color::Green :
 			                                         Color::LightSteelBlue;
+	}
+
+	private: Void button2_help_Click(Object^ sender, EventArgs^ e)
+	{   if (nullptr  != myFormHelp)
+        {   myFormHelp->Close();
+            myFormHelp = nullptr;
+        }
+        else
+        {   myFormHelp = gcnew CalcForm2::MyFormHelp();
+            myFormHelp->Owner = this;
+            myFormHelp->Show();
+        }
 	}
 };
 }

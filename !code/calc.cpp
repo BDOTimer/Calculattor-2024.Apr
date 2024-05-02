@@ -205,6 +205,43 @@ struct  Config
         return nullptr;
     }
 
+    std::wstring report_help()
+    {
+        std::wstringstream WCOUT;
+        std::vector<std::vector<std::wstring>> m(3);
+        {
+            for (const auto& e : grammar)
+            {   switch (e.TYPE)
+                {   case Grammar::OPERATION :
+                    case Grammar::OPER_UNARY:
+                        m[1].push_back(std::to_wstring(e.name)); break;
+                    case Grammar::FUNCTION:
+                        m[2].push_back(std::to_wstring(e.name)); break;
+                    default: m[0].push_back(std::to_wstring(e.name));
+                }
+            }
+        }
+
+        WCOUT << L"РАЗДЕЛИТЕЛИ: ";
+        for (const auto& e : m[0])
+        {   WCOUT << e << " ";
+        }   WCOUT << ENDL << ENDL;
+
+        WCOUT << L"ОПЕРАЦИИ   : ";
+        for (const auto& e : m[1])
+        {   WCOUT << e << " ";
+        }   WCOUT << ENDL << ENDL;
+
+        int cnt = 0;
+        WCOUT << L"ФУНКЦИИ    : " << ENDL;
+        for (const auto& e : m[2])
+        {   WCOUT << std::setw(12) << e << " ";
+            if (++cnt % 3 == 0) WCOUT << ENDL;
+        }   WCOUT << ENDL << ENDL;
+
+        return WCOUT.str();
+    }
+
 private:
     std::string_view opers{"+-*/&=><|%!"};
     std::string_view delim{" (),\n\r"   };
@@ -1483,6 +1520,10 @@ int main()
 ///----------------------------------------------------------------------------|
 /// Релизация методов API_calculator.
 ///----------------------------------------------------------------------------:
+std::wstring API_calculator::report_help()
+{   return config.report_help();
+}
+
 void API_calculator::regvar(std::string_view varname)
 {   vars_global_EXT.regvar(varname);
 }

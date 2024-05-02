@@ -189,6 +189,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\!code\calc.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="MyFormHelp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\!code\API_calculator.hpp" />
@@ -197,11 +198,17 @@
     <ClInclude Include="MyFormC.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MyFormHelp.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyFormC.resx">
       <DependentUpon>MyFormC.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyFormHelp.resx">
+      <DependentUpon>MyFormHelp.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
