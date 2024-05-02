@@ -20,6 +20,7 @@ std::wstring build(API_calculator& c)
 }
 
 #include "code/mover.h"
+#include "code/form_geom.h"
 
 namespace $safeprojectname$ {
 
@@ -78,13 +79,16 @@ namespace $safeprojectname$ {
 
 
 	private: System::Windows::Forms::Button^ button2_Exit;
+	private: System::Windows::Forms::Button^ button3_minimize;
 
-	private: System::Windows::Forms::Button^ button3;
+
 	private: System::Windows::Forms::RichTextBox^ richTextBox3_Res;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button1_reset;
+
 	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button2_help;
+
 	private: System::Windows::Forms::RichTextBox^ richTextBox1_Res;
 
 
@@ -106,19 +110,20 @@ namespace $safeprojectname$ {
 			this->richTextBox2_Log = (gcnew System::Windows::Forms::RichTextBox());
 			this->textBox1_Vars = (gcnew System::Windows::Forms::TextBox());
 			this->button2_Exit = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button3_minimize = (gcnew System::Windows::Forms::Button());
 			this->richTextBox3_Res = (gcnew System::Windows::Forms::RichTextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button1_reset = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->richTextBox1_Res = (gcnew System::Windows::Forms::RichTextBox());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button2_help = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// richTextBox1_Edit
 			// 
 			this->richTextBox1_Edit->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->richTextBox1_Edit->BackColor = System::Drawing::Color::Ivory;
 			this->richTextBox1_Edit->Font = (gcnew System::Drawing::Font(L"DEC Terminal Modern", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->richTextBox1_Edit->Location = System::Drawing::Point(3, 58);
@@ -159,9 +164,12 @@ namespace $safeprojectname$ {
 			// 
 			// button2_Exit
 			// 
-			this->button2_Exit->BackColor = System::Drawing::Color::LavenderBlush;
+			this->button2_Exit->BackColor = System::Drawing::Color::LightSteelBlue;
 			this->button2_Exit->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button2_Exit->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->button2_Exit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2_Exit->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->button2_Exit->Location = System::Drawing::Point(844, 8);
 			this->button2_Exit->Name = L"button2_Exit";
 			this->button2_Exit->Size = System::Drawing::Size(28, 20);
@@ -170,18 +178,21 @@ namespace $safeprojectname$ {
 			this->button2_Exit->UseVisualStyleBackColor = false;
 			this->button2_Exit->Click += gcnew System::EventHandler(this, &MyForm::button2_Exit_Click);
 			// 
-			// button3
+			// button3_minimize
 			// 
-			this->button3->BackColor = System::Drawing::Color::LavenderBlush;
-			this->button3->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->button3->Location = System::Drawing::Point(810, 8);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(28, 20);
-			this->button3->TabIndex = 8;
-			this->button3->Text = L"_";
-			this->button3->UseVisualStyleBackColor = false;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Mini_Click);
+			this->button3_minimize->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->button3_minimize->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button3_minimize->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3_minimize->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->button3_minimize->Location = System::Drawing::Point(810, 8);
+			this->button3_minimize->Name = L"button3_minimize";
+			this->button3_minimize->Size = System::Drawing::Size(28, 20);
+			this->button3_minimize->TabIndex = 8;
+			this->button3_minimize->Text = L"-";
+			this->button3_minimize->UseVisualStyleBackColor = false;
+			this->button3_minimize->Click += gcnew System::EventHandler(this, &MyForm::button3_Mini_Click);
 			// 
 			// richTextBox3_Res
 			// 
@@ -213,27 +224,27 @@ namespace $safeprojectname$ {
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"ÐÅÇÓËÜÒÀÒ:";
 			// 
-			// button1
+			// button1_reset
 			// 
-			this->button1->BackColor = System::Drawing::Color::Snow;
-			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button1->Font = (gcnew System::Drawing::Font(L"PT Mono", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button1_reset->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->button1_reset->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button1_reset->Font = (gcnew System::Drawing::Font(L"PT Mono", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->ForeColor = System::Drawing::Color::DarkRed;
-			this->button1->Location = System::Drawing::Point(3, 3);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(50, 47);
-			this->button1->TabIndex = 5;
-			this->button1->Text = L"ÑÁÐÎÑ";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_Reset);
+			this->button1_reset->ForeColor = System::Drawing::Color::MediumBlue;
+			this->button1_reset->Location = System::Drawing::Point(3, 3);
+			this->button1_reset->Name = L"button1_reset";
+			this->button1_reset->Size = System::Drawing::Size(50, 47);
+			this->button1_reset->TabIndex = 5;
+			this->button1_reset->Text = L"ÑÁÐÎÑ";
+			this->button1_reset->UseVisualStyleBackColor = false;
+			this->button1_reset->Click += gcnew System::EventHandler(this, &MyForm::button1_Click_Reset);
 			// 
 			// panel1
 			// 
 			this->panel1->AutoSize = true;
 			this->panel1->BackColor = System::Drawing::Color::Navy;
 			this->panel1->Controls->Add(this->richTextBox1_Res);
-			this->panel1->Controls->Add(this->button1);
+			this->panel1->Controls->Add(this->button1_reset);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->richTextBox3_Res);
 			this->panel1->Location = System::Drawing::Point(3, 3);
@@ -257,28 +268,30 @@ namespace $safeprojectname$ {
 			this->richTextBox1_Res->Text = L"...";
 			this->richTextBox1_Res->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::richTextBox1_Res_MouseDoubleClick);
 			// 
-			// button2
+			// button2_help
 			// 
-			this->button2->BackColor = System::Drawing::Color::LavenderBlush;
-			this->button2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->button2->Location = System::Drawing::Point(776, 8);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(28, 20);
-			this->button2->TabIndex = 9;
-			this->button2->Text = L"\?";
-			this->button2->UseVisualStyleBackColor = false;
+			this->button2_help->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->button2_help->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button2_help->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2_help->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->button2_help->Location = System::Drawing::Point(776, 8);
+			this->button2_help->Margin = System::Windows::Forms::Padding(0);
+			this->button2_help->Name = L"button2_help";
+			this->button2_help->Size = System::Drawing::Size(28, 20);
+			this->button2_help->TabIndex = 9;
+			this->button2_help->Text = L"\?";
+			this->button2_help->UseVisualStyleBackColor = false;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->AutoSize = true;
-			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->BackColor = System::Drawing::Color::Navy;
 			this->ClientSize = System::Drawing::Size(884, 611);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2_help);
+			this->Controls->Add(this->button3_minimize);
 			this->Controls->Add(this->button2_Exit);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->textBox1_Vars);
@@ -291,6 +304,7 @@ namespace $safeprojectname$ {
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Êàëüêóëÿòîð-2024";
+			this->TransparencyKey = System::Drawing::Color::Pink;
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
@@ -339,6 +353,8 @@ namespace $safeprojectname$ {
 
 		bool error = false;
 
+		color(0, richTextBox1_Edit->Text->Length, Color::Black);
+
 		if(std::wstring s = build(calc); s.empty())
 		{
 			good();
@@ -356,15 +372,12 @@ namespace $safeprojectname$ {
 			richTextBox1_Res->ForeColor = System::Drawing::Color::SeaGreen;
 			richTextBox2_Log->ForeColor = System::Drawing::Color::LimeGreen;
 
-			//std::string ss = marshal_as<std::string>(richTextBox1_Edit->Text);
-			//richTextBox1_Edit->Text = marshal_as<String^>(ss);
-
-			color(0, richTextBox1_Edit->Text->Length, Color::Black);
+			pos_last_str = richTextBox1_Edit->Text->Length + 1;
 		}
 		else
 		{	bad();
 
-			richTextBox1_Res->Text = L"... óïñ ...";
+			richTextBox1_Res->Text = L"óïñ ...";
 			richTextBox2_Log->Text =  marshal_as<String^>(s);
 			
 			richTextBox1_Res->ForeColor = System::Drawing::Color::Purple;
@@ -377,8 +390,6 @@ namespace $safeprojectname$ {
 			error = true;
 		}
 
-		pos_last_str = richTextBox1_Edit->Text->Length + 1;
-
 		info_Vars();
 
 		return error;
@@ -386,20 +397,6 @@ namespace $safeprojectname$ {
 
 	String^ get_last_string(RichTextBox^ rtb)
 	{	auto   arr = rtb->Text->Split(L'\n');
-/*
-		int a = 0;
-		for(int i = 0; i < arr->Length - 1; ++i)
-		{	a += arr[0]->Length;
-		}
-
-		richTextBox1_Edit->SelectionStart     = a;
-		richTextBox1_Edit->SelectionLength    = arr[arr->Length - 1]->Length;
-		richTextBox1_Edit->SelectionBackColor = Color::LightCyan;
-
-		richTextBox1_Edit->SelectionStart     = richTextBox1_Edit->Text->Length-1;
-		richTextBox1_Edit->SelectionLength    = 1;
-		richTextBox1_Edit->SelectionBackColor = Color::White;
-*/
 		return arr [ arr->Length - 1 ];
 	}
 
@@ -426,7 +423,7 @@ namespace $safeprojectname$ {
 	{	calc.reset();
         textBox1_Vars->Text = "...";
 
-		richTextBox1_Edit    ->Text = "";
+		richTextBox1_Edit ->Text = "";
 		label1          ->Text = L"ÐÅÇÓËÜÒÀÒ: ...";
 		richTextBox1_Res->Text = "...";
 		richTextBox2_Log->Text = "...";
