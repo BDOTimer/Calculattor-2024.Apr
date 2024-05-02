@@ -90,6 +90,8 @@ namespace $safeprojectname$ {
 	private: System::Windows::Forms::Button^ button2_help;
 
 	private: System::Windows::Forms::RichTextBox^ richTextBox1_Res;
+	private: System::Windows::Forms::Button^ button1_topmost;
+
 
 
 
@@ -117,6 +119,7 @@ namespace $safeprojectname$ {
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->richTextBox1_Res = (gcnew System::Windows::Forms::RichTextBox());
 			this->button2_help = (gcnew System::Windows::Forms::Button());
+			this->button1_topmost = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -164,12 +167,12 @@ namespace $safeprojectname$ {
 			// 
 			// button2_Exit
 			// 
-			this->button2_Exit->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->button2_Exit->BackColor = System::Drawing::Color::Navy;
 			this->button2_Exit->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button2_Exit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button2_Exit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2_Exit->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
-				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->button2_Exit->ForeColor = System::Drawing::Color::LightSteelBlue;
 			this->button2_Exit->Location = System::Drawing::Point(844, 8);
 			this->button2_Exit->Name = L"button2_Exit";
 			this->button2_Exit->Size = System::Drawing::Size(28, 20);
@@ -180,12 +183,12 @@ namespace $safeprojectname$ {
 			// 
 			// button3_minimize
 			// 
-			this->button3_minimize->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->button3_minimize->BackColor = System::Drawing::Color::Navy;
 			this->button3_minimize->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button3_minimize->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button3_minimize->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button3_minimize->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
-				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->button3_minimize->ForeColor = System::Drawing::Color::LightSteelBlue;
 			this->button3_minimize->Location = System::Drawing::Point(810, 8);
 			this->button3_minimize->Name = L"button3_minimize";
 			this->button3_minimize->Size = System::Drawing::Size(28, 20);
@@ -270,19 +273,34 @@ namespace $safeprojectname$ {
 			// 
 			// button2_help
 			// 
-			this->button2_help->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->button2_help->BackColor = System::Drawing::Color::Navy;
 			this->button2_help->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button2_help->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button2_help->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2_help->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
-				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->button2_help->ForeColor = System::Drawing::Color::LightSteelBlue;
 			this->button2_help->Location = System::Drawing::Point(776, 8);
-			this->button2_help->Margin = System::Windows::Forms::Padding(0);
 			this->button2_help->Name = L"button2_help";
 			this->button2_help->Size = System::Drawing::Size(28, 20);
 			this->button2_help->TabIndex = 9;
 			this->button2_help->Text = L"\?";
 			this->button2_help->UseVisualStyleBackColor = false;
+			// 
+			// button1_topmost
+			// 
+			this->button1_topmost->BackColor = System::Drawing::Color::Navy;
+			this->button1_topmost->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button1_topmost->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1_topmost->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button1_topmost->ForeColor = System::Drawing::Color::LightSteelBlue;
+			this->button1_topmost->Location = System::Drawing::Point(742, 8);
+			this->button1_topmost->Name = L"button1_topmost";
+			this->button1_topmost->Size = System::Drawing::Size(28, 20);
+			this->button1_topmost->TabIndex = 10;
+			this->button1_topmost->Text = L"T";
+			this->button1_topmost->UseVisualStyleBackColor = false;
+			this->button1_topmost->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// MyForm
 			// 
@@ -290,6 +308,7 @@ namespace $safeprojectname$ {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Navy;
 			this->ClientSize = System::Drawing::Size(884, 611);
+			this->Controls->Add(this->button1_topmost);
 			this->Controls->Add(this->button2_help);
 			this->Controls->Add(this->button3_minimize);
 			this->Controls->Add(this->button2_Exit);
@@ -421,14 +440,12 @@ namespace $safeprojectname$ {
 
 	private: Void button1_Click_Reset(Object^ sender, EventArgs^ e)
 	{	calc.reset();
-        textBox1_Vars->Text = "...";
-
+		label1->Text = L"ÐÅÇÓËÜÒÀÒ: ...";
+        textBox1_Vars     ->Text = "...";
+		richTextBox1_Res  ->Text = "...";
+		richTextBox2_Log  ->Text = "...";
 		richTextBox1_Edit ->Text = "";
-		label1          ->Text = L"ÐÅÇÓËÜÒÀÒ: ...";
-		richTextBox1_Res->Text = "...";
-		richTextBox2_Log->Text = "...";
-
-		richTextBox1_Edit->Focus();
+		richTextBox1_Edit ->Focus();
 	}
 
 	private: Void MyForm_Load(Object^ sender, EventArgs^ e)
@@ -459,6 +476,12 @@ namespace $safeprojectname$ {
 
 		richTextBox1_Edit->SelectionStart  = richTextBox1_Edit->Text->Length;
 		richTextBox1_Edit->SelectionLength = 0;
+	}
+
+	private: Void button1_Click(Object^ sender, EventArgs^ e)
+	{	this->TopMost = !this->TopMost;
+		button1_topmost->ForeColor = this->TopMost ? Color::Green :
+			                                         Color::LightSteelBlue;
 	}
 };
 }
