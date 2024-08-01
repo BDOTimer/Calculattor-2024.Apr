@@ -1446,7 +1446,7 @@ private:
     #undef TESTVAR2
 };
 
-#ifdef DEF_TEST
+#ifndef DEF_LIB
 ///=============|
 /// ТЕСТЫ.      |
 ///=============:

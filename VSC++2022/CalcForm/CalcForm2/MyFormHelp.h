@@ -32,7 +32,7 @@ namespace CalcForm2 {
 			this->HScroll = false;
 			this->VScroll = false;
 
-			richTextBox1->LoadFile("Help.rtf");
+			//richTextBox1->LoadFile("Help.rtf");
 
 			richTextBox1->Text += "\r\n";
 			richTextBox1->Text += "\r\n";
