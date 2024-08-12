@@ -129,8 +129,8 @@ namespace $safeprojectname$ {
 			// 
 			this->richTextBox1_Edit->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->richTextBox1_Edit->BackColor = System::Drawing::Color::Ivory;
-			this->richTextBox1_Edit->Font = (gcnew System::Drawing::Font(L"DEC Terminal Modern", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
+			this->richTextBox1_Edit->Font = (gcnew System::Drawing::Font(L"Consolas", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->richTextBox1_Edit->Location = System::Drawing::Point(3, 58);
 			this->richTextBox1_Edit->MaxLength = 200000;
 			this->richTextBox1_Edit->Name = L"richTextBox1_Edit";
@@ -158,7 +158,7 @@ namespace $safeprojectname$ {
 			// 
 			this->textBox1_Vars->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->textBox1_Vars->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
-			this->textBox1_Vars->Font = (gcnew System::Drawing::Font(L"PT Mono", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->textBox1_Vars->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox1_Vars->Location = System::Drawing::Point(715, 58);
 			this->textBox1_Vars->Multiline = true;
@@ -203,7 +203,7 @@ namespace $safeprojectname$ {
 			// 
 			this->richTextBox3_Res->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->richTextBox3_Res->Enabled = false;
-			this->richTextBox3_Res->Font = (gcnew System::Drawing::Font(L"DEC Terminal Modern", 15.75F, System::Drawing::FontStyle::Regular,
+			this->richTextBox3_Res->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
 			this->richTextBox3_Res->Location = System::Drawing::Point(360, 3);
 			this->richTextBox3_Res->Margin = System::Windows::Forms::Padding(30, 3, 3, 3);
@@ -220,12 +220,12 @@ namespace $safeprojectname$ {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"PT Mono", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::SystemColors::ActiveCaption;
 			this->label1->Location = System::Drawing::Point(75, 15);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(140, 24);
+			this->label1->Size = System::Drawing::Size(151, 25);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"ÐÅÇÓËÜÒÀÒ:";
 			// 
@@ -233,7 +233,7 @@ namespace $safeprojectname$ {
 			// 
 			this->button1_reset->BackColor = System::Drawing::Color::LightSteelBlue;
 			this->button1_reset->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button1_reset->Font = (gcnew System::Drawing::Font(L"PT Mono", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button1_reset->Font = (gcnew System::Drawing::Font(L"Consolas", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1_reset->ForeColor = System::Drawing::Color::MediumBlue;
 			this->button1_reset->Location = System::Drawing::Point(3, 3);
@@ -261,7 +261,7 @@ namespace $safeprojectname$ {
 			// 
 			this->richTextBox1_Res->BackColor = System::Drawing::Color::WhiteSmoke;
 			this->richTextBox1_Res->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->richTextBox1_Res->Font = (gcnew System::Drawing::Font(L"DEC Terminal Modern", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->richTextBox1_Res->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->richTextBox1_Res->Location = System::Drawing::Point(371, 15);
 			this->richTextBox1_Res->MaxLength = 100;
